@@ -1,6 +1,7 @@
 # Created by https://www.toptal.com/developers/gitignore/api/macos,latex,windows
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,latex,windows
-
+images
+images/
 ### LaTeX ###
 ## Core latex/pdflatex auxiliary files:
 *.aux
