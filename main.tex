@@ -7,15 +7,18 @@
  total={168mm,257mm},
  left=20mm,
  top=15mm,
+ includefoot,includehead
  }
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
 \usepackage{svg}
 \usepackage{placeins}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
+\usepackage[headsepline]{scrlayer-scrpage}
 
+\clearpairofpagestyles %Seitenzahl nicht in der Kopfzeile
 
 \title{MeetEU Project - Team Heidelberg - Team 1 -- \\ Identification and Enhancement of novel Sars-CoV-2 NSP13 helicase inhibitors}
 \author{Linda Blaier, Paul Brunner, Selina Ernst, Valerie Segatz and Chloe Weiler}
@@ -25,22 +28,31 @@
 
 \maketitle
 
+\ihead{\headmark}
+\automark{section}  %Kopfzeile gleich dem Sektiontitel
+\cfoot{\pagemark}   %\ofood Seitenzahl rechts
+
 \section{Abstract} 
 \FloatBarrier
 
+
 \section{Introduction}
-\section{Material and Methods} 
+
+\section{Material and Methods}
+
 \section{Results} 
 
 \FloatBarrier
 
 \section{Discussion and Outlook}
-\pagebreak
-\pagebreak
+
 \section{Supplementary Material}
 
+\pagebreak
 \FloatBarrier
 \bibliographystyle{apalike}
 \bibliography{main.bib}
+
+
 
 \end{document}
