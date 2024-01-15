@@ -49,12 +49,11 @@ As the last step of our pipeline, a MD simulation is conducted using the best sc
 
 \section{Material and Methods}
 \subsection{Datasets from ZINC20 and ECBL}
-ZINC is a free database of over 230 million commercially available compounds \cite{Irwin.2020}.\\
-\\
-Furthermore, we downloaded all 5016 files of the ECBL pilot library.
+A total of 1616 fda approved drugs were downloaded in .sdf format from the ZINC database \cite{Irwin.2020}. Additional, 5016 fiels were retrieved, downloading the pilot library from the ECBL database.
 
 \subsection{Receptor and ligand preparation}
-Ligands were prepared using openbable in order generate 3D structures, convert implicit hydrogens to explicit hydrogens, to split mulitmolecule files into single ones and to convert all files into pdbqt's.
+Ligands were prepared using openbable in order to convert implicit hydrogens into explicit hydrogens, generate necessary 3D structures of the ligands, as well as to split mulitmolecule files into single ones. ADFR suite was further used in order to convert all files into the .pdbqt format, which is required by Autodock Vina. 
+ 
 \section{Results}
 
 \FloatBarrier
