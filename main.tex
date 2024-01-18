@@ -9,6 +9,9 @@
  top=15mm,
  includefoot,includehead
  }
+ \usepackage[backend=biber, style=authoryear, giveninits=true, maxbibnames=25, uniquename=init, maxcitenames=2, hyperref=true, dashed=false]{biblatex}			% Benutze Biber/BibLaTeX zum Zitieren
+\addbibresource{main.bib}					% Pfad zur BibTeX Datei aus Citavi
+\renewcommand{\cite}{\parencite}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -53,7 +56,6 @@ In order to enhance the binding affinity of our drug candidates and thus their p
 \subsection{Molecular Dynamics Simulation}
 As the last step of our pipeline, a MD simulation is conducted using the best scoring compounds as a ligand in the binding pocket of the NSP13 protein. Using GROMACS (Version 2023.3) \cite{package_GROMACS}, this enables us to interpret the stability of the protein-ligand interaction, as well as to identify important residues for the interaction. Using a given force-field, a set of equations describing different forces between the atoms and residues in the protein and ligand, the movement of all atoms in the system can be simulated and analysed. However, this is only possible in a very limited timeframe with a small time step size. As this process is rather resource heavy, it has to be conducted on a cluster with access to a GPU. 
 
-
 \section{Material and Methods}
 \subsection{Protein preparation}
 \subsection{Consensus binding site detection}
@@ -67,9 +69,8 @@ As the last step of our pipeline, a MD simulation is conducted using the best sc
 
 \pagebreak
 \FloatBarrier
-\bibliographystyle{apalike}
-\bibliography{main.bib}
 
-
+\renewcommand{\bibname}{References}  % damit Literatuverzeicnis mit "References" betitelt
+\printbibliography
 
 \end{document}
