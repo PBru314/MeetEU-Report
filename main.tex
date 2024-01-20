@@ -10,7 +10,7 @@
  includefoot,includehead
  }
 \usepackage[backend=biber, style=authoryear, giveninits=true, maxbibnames=25, uniquename=init, maxcitenames=2, hyperref=true, dashed=false]{biblatex}			% Benutze Biber/BibLaTeX zum Zitieren
- \addbibresource{main.bib}
+\addbibresource{main.bib}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -48,6 +48,9 @@ In order to enhance the binding affinity of our drug candidates and thus their p
 \subsection{Molecular Dynamics Simulation}
 As the last step of our pipeline, a MD simulation is conducted using the best scoring compounds as a ligand in the binding pocket of the NSP13 protein. Using GROMACS (Version 2023.3) \cite{package_GROMACS}, this enables us to interpret the stability of the protein-ligand interaction, as well as to identify important residues for the interaction. Using a given force-field, a set of equations describing different forces between the atoms and residues in the protein and ligand, the movement of all atoms in the system can be simulated and analysed. However, this is only possible in a very limited timeframe with a small time step size. As this process is rather resource heavy, it has to be conducted on a cluster with access to a GPU. 
 
+\subsection{Estimation of Toxicity and Synthetic Accessibility}
+ 
+Following successful discovery and optimisation of lead drug compounds, an evaluation of the chosen compounds’ general toxicity and synthetic accessibility was performed using \textit{e}ToxPred (\textbf{Citation}). This additional steps gives our study a reference to real-life application as it allows for a general estimation of the risk vs. benefit ratio through the Tox-score. Furthermore, it allows for an insight into the ease of synthesis, reflected by the synthetic accessibility score (SAscore), of the compounds in a laboratory setting. After having assessed the efficacy of the different drugs as CoVid treatment options, these two parameters give an insight into how realistic the compounds are for use as drugs.
 
 \section{Material and Methods}
 \section{Results} 
