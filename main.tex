@@ -9,6 +9,8 @@
  top=15mm,
  includefoot,includehead
  }
+\usepackage[backend=biber, style=authoryear, giveninits=true, maxbibnames=25, uniquename=init, maxcitenames=2, hyperref=true, dashed=false]{biblatex}			% Benutze Biber/BibLaTeX zum Zitieren
+ \addbibresource{main.bib}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -21,7 +23,7 @@
 \clearpairofpagestyles %Seitenzahl nicht in der Kopfzeile
 
 \title{MeetEU Project - Team Heidelberg - Team 1 -- \\ Identification and Enhancement of novel Sars-CoV-2 NSP13 helicase inhibitors}
-\author{Linda Blaier, Paul Brunner, Selina Ernst, Valerie Segatz and Chlo\'{e} Weiler}
+\author{Linda Blaier, Paul Brunner, Selina Ernst, Valerie Segatz, and Chlo\'{e} Weiler}
 \date{February 2024}
 
 \begin{document}
@@ -58,8 +60,8 @@ As the last step of our pipeline, a MD simulation is conducted using the best sc
 
 \pagebreak
 \FloatBarrier
-\bibliographystyle{apalike}
-\bibliography{main.bib}
+\renewcommand{\bibname}{References}  % damit Literatuverzeicnis mit "References" betitelt
+\printbibliography
 
 
 
