@@ -50,9 +50,12 @@ As the last step of our pipeline, a MD simulation is conducted using the best sc
 
 \subsection{Estimation of Toxicity and Synthetic Accessibility}
  
-Following successful discovery and optimisation of lead drug compounds, an evaluation of the chosen compounds’ general toxicity and synthetic accessibility was performed using \textit{e}ToxPred (\cite{pu2019toxpred}). This additional steps gives our study a reference to real-life application as it allows for a general estimation of the risk vs. benefit ratio through the Tox-score. Furthermore, it allows for an insight into the ease of synthesis, reflected by the synthetic accessibility score (SAscore), of the compounds in a laboratory setting. After having assessed the efficacy of the different drugs as CoVid treatment options, these two parameters give an insight into how realistic the compounds are for use as drugs.
+After identifying the lead compounds that exhibit optimal binding affinity within the consensus pocket, an evaluation of the general toxicity and synthetic accessibility of these compounds was performed using \textit{e}ToxPred (\cite{pu2019toxpred}). This additional step helps estimate the suitability of the compounds as real-life pharmaceuticals against COVID-19. The Tox-score allows for a general assessment of the predicted risk vs. benefit ratio. Moreober, \textit{e}ToxPred allows for an insight into the ease of synthesis, reflected by the synthetic accessibility score (SAscore), of the compounds in a laboratory setting. 
 
 \section{Material and Methods}
+\subsection{Toxicity and Synthetic Accessibility Prediction using \textit{e}ToxPred}
+Following lead optimisation, the toxicity of the given compounds was estimated using \textit{e}ToxPred (\cite{pu2019toxpred}). In accordance to the paper, a Tox-score threshold of 0.58 was selected to differentiate between toxic and non-toxic compounds, where all compounds with a Tox-score below 0.58 are deemed non-toxic.
+
 \section{Results} 
 
 \FloatBarrier
