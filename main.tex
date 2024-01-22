@@ -20,11 +20,12 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{acronym}
 
 \clearpairofpagestyles %Seitenzahl nicht in der Kopfzeile
 
 \title{MeetEU Project - Team Heidelberg - Team 1 -- \\ Identification and Enhancement of novel Sars-CoV-2 NSP13 helicase inhibitors}
-\author{Linda Blaier, Paul Brunner, Selina Ernst, Valerie Segatz and Chlo\'{e} Weiler}
+\author{Linda Blaier, Paul Brunner, Selina Ernst, Valerie Segatz, and Chlo\'{e} Weiler}
 \date{February 2024}
 
 \begin{document}
@@ -42,10 +43,28 @@ HIER KOMMT EINE ABBILDUNG HIN
 
 \FloatBarrier
 
+%    Abkürzungsverzeichnis
+{\setlength{\parskip}{0.2cm}
+\section*{Abbreviations}
+    \begin{acronym}[LC-MS/MS23]
+        % A B C D E F G H I J K L M N O P Q R S T U V W X Y Z        
+        % Abkürzungen
+        \acro{RTC}{replication transcription complex}
+        \acro{ssRNA}{single-stranded RNA}
+        
+        % Formelzeichen
+        
+        
+        % als benutzt markierte Acronyme    
+        
+        
+    \end{acronym}
+}
+\newpage
 
 \section{Introduction}
 General intro on nsp13 helicase... 
-In the \textbf{RTC} the NSP13 helicase is present as a homodimer. Nevertheless, only one of the copies is in complex with a single-stranded RNA \textbf{ssRNA}. Therefore, Berta \textit{et al.} propose that the catalytically active form of the NSP13 helicase is the monomer \cite{Berta_2021}.  
+In the \ac{RTC} the NSP13 helicase is present as a homodimer. Nevertheless, only one of the copies is in complex with a single-stranded RNA \ac{ssRNA}. Therefore, Berta \textit{et al.} propose that the catalytically active form of the NSP13 helicase is the monomer \cite{Berta_2021}.  
 
 
 \subsection{Identification of consensus binding pocket}
