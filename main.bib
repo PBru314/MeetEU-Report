@@ -90,3 +90,278 @@
   publisher={Springer}
 }
 
+@article{Stank_2016,
+   author = {Stank, Antonia and Kokh, Daria B. and Fuller, Jonathan C. and Wade, Rebecca C.},
+   title = {Protein Binding Pocket Dynamics},
+   journal = {Accounts of Chemical Research},
+   volume = {49},
+   number = {5},
+   pages = {809-815},
+   note = {doi: 10.1021/acs.accounts.5b00516},
+   ISSN = {0001-4842},
+   DOI = {10.1021/acs.accounts.5b00516},
+   url = {https://doi.org/10.1021/acs.accounts.5b00516},
+   year = {2016},
+   type = {Journal Article}
+}
+
+@article{package_FTMAP,
+   author = {Brenke, R. and Kozakov, D. and Chuang, G. Y. and Beglov, D. and Hall, D. and Landon, M. R. and Mattos, C. and Vajda, S.},
+   title = {Fragment-based identification of druggable 'hot spots' of proteins using Fourier domain correlation techniques},
+   journal = {Bioinformatics},
+   volume = {25},
+   number = {5},
+   pages = {621-7},
+   note = {},
+   abstract = {MOTIVATION: The binding sites of proteins generally contain smaller regions that provide major contributions to the binding free energy and hence are the prime targets in drug design. Screening libraries of fragment-sized compounds by NMR or X-ray crystallography demonstrates that such 'hot spot' regions bind a large variety of small organic molecules, and that a relatively high 'hit rate' is predictive of target sites that are likely to bind drug-like ligands with high affinity. Our goal is to determine the 'hot spots' computationally rather than experimentally. RESULTS: We have developed the FTMAP algorithm that performs global search of the entire protein surface for regions that bind a number of small organic probe molecules. The search is based on the extremely efficient fast Fourier transform (FFT) correlation approach which can sample billions of probe positions on dense translational and rotational grids, but can use only sums of correlation functions for scoring and hence is generally restricted to very simple energy expressions. The novelty of FTMAP is that we were able to incorporate and represent on grids a detailed energy expression, resulting in a very accurate identification of low-energy probe clusters. Overlapping clusters of different probes are defined as consensus sites (CSs). We show that the largest CS is generally located at the most important subsite of the protein binding site, and the nearby smaller CSs identify other important subsites. Mapping results are presented for elastase whose structure has been solved in aqueous solutions of eight organic solvents, and we show that FTMAP provides very similar information. The second application is to renin, a long-standing pharmaceutical target for the treatment of hypertension, and we show that the major CSs trace out the shape of the first approved renin inhibitor, aliskiren. AVAILABILITY: FTMAP is available as a server at http://ftmap.bu.edu/.},
+   keywords = {Algorithms
+Binding Sites
+Crystallography, X-Ray
+Internet
+Models, Molecular
+Protein Conformation
+Protein Interaction Mapping
+Proteins/*chemistry},
+   ISSN = {1367-4803 (Print)
+1367-4803},
+   DOI = {10.1093/bioinformatics/btp036},
+   year = {2009},
+   type = {Journal Article}
+}
+
+@article{package_PrankWeb3,
+   author = {Jakubec, David and Skoda, Petr and Krivak, Radoslav and Novotny, Marian and Hoksza, David},
+   title = {PrankWeb 3: accelerated ligand-binding site predictions for experimental and modelled protein structures},
+   journal = {Nucleic Acids Research},
+   volume = {50},
+   number = {W1},
+   pages = {W593-W597},
+   abstract = {Knowledge of protein–ligand binding sites (LBSs) enables research ranging from protein function annotation to structure-based drug design. To this end, we have previously developed a stand-alone tool, P2Rank, and the web server PrankWeb (https://prankweb.cz/) for fast and accurate LBS prediction. Here, we present significant enhancements to PrankWeb. First, a new, more accurate evolutionary conservation estimation pipeline based on the UniRef50 sequence database and the HMMER3 package is introduced. Second, PrankWeb now allows users to enter UniProt ID to carry out LBS predictions in situations where no experimental structure is available by utilizing the AlphaFold model database. Additionally, a range of minor improvements has been implemented. These include the ability to deploy PrankWeb and P2Rank as Docker containers, support for the mmCIF file format, improved public REST API access, or the ability to batch download the LBS predictions for the whole PDB archive and parts of the AlphaFold database.},
+   ISSN = {0305-1048},
+   DOI = {10.1093/nar/gkac389},
+   url = {https://doi.org/10.1093/nar/gkac389},
+   year = {2022},
+   type = {Journal Article}
+}
+
+@article{package_PrankWeb,
+   author = {Jendele, Lukas and Krivak, Radoslav and Skoda, Petr and Novotny, Marian and Hoksza, David},
+   title = {PrankWeb: a web server for ligand binding site prediction and visualization},
+   journal = {Nucleic Acids Research},
+   volume = {47},
+   number = {W1},
+   pages = {W345-W349},
+   abstract = {PrankWeb is an online resource providing an interface to P2Rank, a state-of-the-art method for ligand binding site prediction. P2Rank is a template-free machine learning method based on the prediction of local chemical neighborhood ligandability centered on points placed on a solvent-accessible protein surface. Points with a high ligandability score are then clustered to form the resulting ligand binding sites. In addition, PrankWeb provides a web interface enabling users to easily carry out the prediction and visually inspect the predicted binding sites via an integrated sequence-structure view. Moreover, PrankWeb can determine sequence conservation for the input molecule and use this in both the prediction and result visualization steps. Alongside its online visualization options, PrankWeb also offers the possibility of exporting the results as a PyMOL script for offline visualization. The web frontend communicates with the server side via a REST API. In high-throughput scenarios, therefore, users can utilize the server API directly, bypassing the need for a web-based frontend or installation of the P2Rank application. PrankWeb is available at http://prankweb.cz/, while the web application source code and the P2Rank method can be accessed at https://github.com/jendelel/PrankWebApp and https://github.com/rdk/p2rank, respectively.},
+   ISSN = {0305-1048},
+   DOI = {10.1093/nar/gkz424},
+   url = {https://doi.org/10.1093/nar/gkz424},
+   year = {2019},
+   type = {Journal Article}
+}
+
+
+
+@article{package_P2Rank,
+   author = {Krivák, Radoslav and Hoksza, David},
+   title = {P2Rank: machine learning based tool for rapid and accurate prediction of ligand binding sites from protein structure},
+   journal = {Journal of Cheminformatics},
+   volume = {10},
+   number = {1},
+   pages = {39},
+   abstract = {Ligand binding site prediction from protein structure has many applications related to elucidation of protein function and structure based drug discovery. It often represents only one step of many in complex computational drug design efforts. Although many methods have been published to date, only few of them are suitable for use in automated pipelines or for processing large datasets. These use cases require stability and speed, which disqualifies many of the recently introduced tools that are either template based or available only as web servers.},
+   ISSN = {1758-2946},
+   DOI = {10.1186/s13321-018-0285-8},
+   url = {https://doi.org/10.1186/s13321-018-0285-8},
+   year = {2018},
+   type = {Journal Article}
+}
+
+@article{package_Fpocket,
+   author = {Le Guilloux, Vincent and Schmidtke, Peter and Tuffery, Pierre},
+   title = {Fpocket: An open source platform for ligand pocket detection},
+   journal = {BMC Bioinformatics},
+   volume = {10},
+   number = {1},
+   pages = {168},
+   abstract = {Virtual screening methods start to be well established as effective approaches to identify hits, candidates and leads for drug discovery research. Among those, structure based virtual screening (SBVS) approaches aim at docking collections of small compounds in the target structure to identify potent compounds. For SBVS, the identification of candidate pockets in protein structures is a key feature, and the recent years have seen increasing interest in developing methods for pocket and cavity detection on protein surfaces.},
+   ISSN = {1471-2105},
+   DOI = {10.1186/1471-2105-10-168},
+   url = {https://doi.org/10.1186/1471-2105-10-168},
+   year = {2009},
+   type = {Journal Article}
+}
+
+@article{Newman_2021,
+   author = {Newman, Joseph A. and Douangamath, Alice and Yadzani, Setayesh and Yosaatmadja, Yuliana and Aimon, Antony and Brandão-Neto, José and Dunnett, Louise and Gorrie-stone, Tyler and Skyner, Rachael and Fearon, Daren and Schapira, Matthieu and von Delft, Frank and Gileadi, Opher},
+   title = {Structure, mechanism and crystallographic fragment screening of the SARS-CoV-2 NSP13 helicase},
+   journal = {Nature Communications},
+   volume = {12},
+   number = {1},
+   pages = {4848},
+   abstract = {There is currently a lack of effective drugs to treat people infected with SARS-CoV-2, the cause of the global COVID-19 pandemic. The SARS-CoV-2 Non-structural protein 13 (NSP13) has been identified as a target for anti-virals due to its high sequence conservation and essential role in viral replication. Structural analysis reveals two “druggable” pockets on NSP13 that are among the most conserved sites in the entire SARS-CoV-2 proteome. Here we present crystal structures of SARS-CoV-2 NSP13 solved in the APO form and in the presence of both phosphate and a non-hydrolysable ATP analog. Comparisons of these structures reveal details of conformational changes that provide insights into the helicase mechanism and possible modes of inhibition. To identify starting points for drug development we have performed a crystallographic fragment screen against NSP13. The screen reveals 65 fragment hits across 52 datasets opening the way to structure guided development of novel antiviral agents.},
+   ISSN = {2041-1723},
+   DOI = {10.1038/s41467-021-25166-6},
+   url = {https://doi.org/10.1038/s41467-021-25166-6},
+   year = {2021},
+   type = {Journal Article}
+}
+
+@article{Berta_2021,
+  title={Modelling the active SARS-CoV-2 helicase complex as a basis for structure-based inhibitor design},
+  author={Berta, D{\'e}nes and Badaoui, Magd and Martino, Sam Alexander and Buigues, Pedro J and Pisliakov, Andrei V and Elghobashi-Meinhardt, Nadia and Wells, Geoff and Harris, Sarah A and Frezza, Elisa and Rosta, Edina},
+  journal={Chemical Science},
+  volume={12},
+  number={40},
+  pages={13492--13505},
+  year={2021},
+  publisher={Royal Society of Chemistry}
+}
+
+@article{Eastman_2017,
+   author = {Eastman, Peter and Swails, Jason and Chodera, John D. and McGibbon, Robert T. and Zhao, Yutong and Beauchamp, Kyle A. and Wang, Lee-Ping and Simmonett, Andrew C. and Harrigan, Matthew P. and Stern, Chaya D. and Wiewiora, Rafal P. and Brooks, Bernard R. and Pande, Vijay S.},
+   title = {OpenMM 7: Rapid development of high performance algorithms for molecular dynamics},
+   journal = {PLOS Computational Biology},
+   volume = {13},
+   number = {7},
+   pages = {e1005659},
+   abstract = {OpenMM is a molecular dynamics simulation toolkit with a unique focus on extensibility. It allows users to easily add new features, including forces with novel functional forms, new integration algorithms, and new simulation protocols. Those features automatically work on all supported hardware types (including both CPUs and GPUs) and perform well on all of them. In many cases they require minimal coding, just a mathematical description of the desired function. They also require no modification to OpenMM itself and can be distributed independently of OpenMM. This makes it an ideal tool for researchers developing new simulation methods, and also allows those new methods to be immediately available to the larger community.},
+   DOI = {10.1371/journal.pcbi.1005659},
+   url = {https://doi.org/10.1371/journal.pcbi.1005659},
+   year = {2017},
+   type = {Journal Article}
+}
+
+@article{Irwin.2020,
+  abstract = {Identifying and purchasing new small molecules to test in
+              biological assays are enabling for ligand discovery, but as
+              purchasable chemical space continues to grow into the tens of
+              billions based on inexpensive make-on-demand compounds, simply
+              searching this space becomes a major challenge. We have therefore
+              developed ZINC20, a new version of ZINC with two major new
+              features: billions of new molecules and new methods to search them.
+              As a fully enumerated database, ZINC can be searched precisely
+              using explicit atomic-level graph-based methods, such as SmallWorld
+              for similarity and Arthor for pattern and substructure search, as
+              well as 3D methods such as docking. Analysis of the new
+              make-on-demand compound sets by these and related tools reveals
+              startling features. For instance, over 97{\%} of the core
+              Bemis-Murcko scaffolds in make-on-demand libraries are unavailable
+              from {\textquotedbl}in-stock{\textquotedbl} collections.
+              Correspondingly, the number of new Bemis-Murcko scaffolds is rising
+              almost as a linear fraction of the elaborated molecules. Thus, an
+              88-fold increase in the number of molecules in the make-on-demand
+              versus the in-stock sets is built upon a 16-fold increase in the
+              number of Bemis-Murcko scaffolds. The make-on-demand library is
+              also more structurally diverse than physical libraries, with a
+              massive increase in disc- and sphere-like shaped molecules. The new
+              system is freely available at zinc20.docking.org.},
+  author = {Irwin, John J. and Tang, Khanh G. and Young, Jennifer and
+            Dandarchuluun, Chinzorig and Wong, Benjamin R. and Khurelbaatar,
+            Munkhzul and Moroz, Yurii S. and Mayfield, John and Sayle, Roger A.},
+  year = {2020},
+  title = {ZINC20-A Free Ultralarge-Scale Chemical Database for Ligand Discovery
+           },
+  pages = {6065--6073},
+  volume = {60},
+  number = {12},
+  journal = {Journal of chemical information and modeling},
+  doi = {10.1021/acs.jcim.0c00675},
+}
+
+@article{Forcefield,
+  year = {2018},
+  title = {{Developing a molecular dynamics force field for both folded and
+           disordered protein states}},
+  author = {Robustelli, Paul and Piana, Stefano and Shaw, David E.},
+  journal = {Proceedings of the National Academy of Sciences},
+  issn = {0027-8424},
+  doi = {10.1073/pnas.1800690115},
+  pmid = {29735687},
+  pmcid = {PMC6003505},
+  abstract = {{Molecular dynamics (MD) simulation is a valuable tool for
+              characterizing the structural dynamics of folded proteins and
+              should be similarly applicable to disordered proteins and proteins
+              with both folded and disordered regions. It has been unclear,
+              however, whether any physical model (force field) used in MD
+              simulations accurately describes both folded and disordered
+              proteins. Here, we select a benchmark set of 21 systems, including
+              folded and disordered proteins, simulate these systems with six
+              state-of-the-art force fields, and compare the results to over 9,
+              000 available experimental data points. We find that none of the
+              tested force fields simultaneously provided accurate descriptions
+              of folded proteins, of the dimensions of disordered proteins, and
+              of the secondary structure propensities of disordered proteins.
+              Guided by simulation results on a subset of our benchmark, however,
+              we modified parameters of one force field, achieving excellent
+              agreement with experiment for disordered proteins, while
+              maintaining state-of-the-art accuracy for folded proteins. The
+              resulting force field, a99SB-disp, should thus greatly expand the
+              range of biological systems amenable to MD simulation. A similar
+              approach could be taken to improve other force fields.}},
+  pages = {E4758--E4766},
+  number = {21},
+  volume = {115},
+  keywords = {},
+  local-url = {file://localhost/Users/paulbrunner/Downloads/pnas.201800690.pdf},
+}
+
+@article{Lemkul2018,
+  place = {Boulder, CO, USA},
+  title = {From Proteins to Perturbed Hamiltonians: A Suite of Tutorials for the
+           GROMACS-2018 Molecular Simulation Package [Article v1.0]},
+  volume = {1},
+  url = {https://livecomsjournal.org/index.php/livecoms/article/view/v1i1e5068},
+  DOI = {10.33011/livecoms.1.1.5068},
+  number = {1},
+  journal = {Living Journal of Computational Molecular Science},
+  author = {Lemkul, Justin A.},
+  year = {2018},
+  month = {Oct.},
+  pages = {5068},
+}
+
+@misc{Corso.2022,
+ abstract = {Predicting the binding structure of a small molecule ligand to a protein -- a task known as molecular docking -- is critical to drug design. Recent deep learning methods that treat docking as a regression problem have decreased runtime compared to traditional search-based methods but have yet to offer substantial improvements in accuracy. We instead frame molecular docking as a generative modeling problem and develop DiffDock, a diffusion generative model over the non-Euclidean manifold of ligand poses. To do so, we map this manifold to the product space of the degrees of freedom (translational, rotational, and torsional) involved in docking and develop an efficient diffusion process on this space. Empirically, DiffDock obtains a 38{\%} top-1 success rate (RMSD{\textless}2A) on PDBBind, significantly outperforming the previous state-of-the-art of traditional docking (23{\%}) and deep learning (20{\%}) methods. Moreover, while previous methods are not able to dock on computationally folded structures (maximum accuracy 10.4{\%}), DiffDock maintains significantly higher precision (21.7{\%}). Finally, DiffDock has fast inference times and provides confidence estimates with high selective accuracy.
+
+International Conference on Learning Representations (ICLR 2023)},
+ author = {Corso, Gabriele and St{\"a}rk, Hannes and Jing, Bowen and Barzilay, Regina and Jaakkola, Tommi},
+ date = {2022},
+ title = {DiffDock: Diffusion Steps, Twists, and Turns for Molecular Docking},
+ publisher = {arXiv},
+ doi = {10.48550/arXiv.2210.01776}
+}
+
+@article{Halgren.2004,
+ abstract = {Glide's ability to identify active compounds in a database screen is characterized by applying Glide to a diverse set of nine protein receptors. In many cases, two, or even three, protein sites are employed to probe the sensitivity of the results to the site geometry. To make the database screens as realistic as possible, the screens use sets of {\textquotedbl}druglike{\textquotedbl} decoy ligands that have been selected to be representative of what we believe is likely to be found in the compound collection of a pharmaceutical or biotechnology company. Results are presented for releases 1.8, 2.0, and 2.5 of Glide. The comparisons show that average measures for both {\textquotedbl}early{\textquotedbl} and {\textquotedbl}global{\textquotedbl} enrichment for Glide 2.5 are 3 times higher than for Glide 1.8 and more than 2 times higher than for Glide 2.0 because of better results for the least well-handled screens. This improvement in enrichment stems largely from the better balance of the more widely parametrized GlideScore 2.5 function and the inclusion of terms that penalize ligand-protein interactions that violate established principles of physical chemistry, particularly as it concerns the exposure to solvent of charged protein and ligand groups. Comparisons to results for the thymidine kinase and estrogen receptors published by Rognan and co-workers (J. Med. Chem. 2000, 43, 4759-4767) show that Glide 2.5 performs better than GOLD 1.1, FlexX 1.8, or DOCK 4.01.},
+ author = {Halgren, Thomas A. and Murphy, Robert B. and Friesner, Richard A. and Beard, Hege S. and Frye, Leah L. and Pollard, W. Thomas and Banks, Jay L.},
+ year = {2004},
+ title = {Glide: a new approach for rapid, accurate docking and scoring. 2. Enrichment factors in database screening},
+ pages = {1750--1759},
+ volume = {47},
+ number = {7},
+ issn = {0022-2623},
+ journal = {Journal of medicinal chemistry},
+ doi = {10.1021/jm030644s}
+}
+
+@article{Trott.2010,
+ abstract = {AutoDock Vina, a new program for molecular docking and virtual screening, is presented. AutoDock Vina achieves an approximately two orders of magnitude speed-up compared with the molecular docking software previously developed in our lab (AutoDock 4), while also significantly improving the accuracy of the binding mode predictions, judging by our tests on the training set used in AutoDock 4 development. Further speed-up is achieved from parallelism, by using multithreading on multicore machines. AutoDock Vina automatically calculates the grid maps and clusters the results in a way transparent to the user.},
+ author = {Trott, Oleg and Olson, Arthur J.},
+ year = {2010},
+ title = {AutoDock Vina: improving the speed and accuracy of docking with a new scoring function, efficient optimization, and multithreading},
+ pages = {455--461},
+ volume = {31},
+ number = {2},
+ journal = {Journal of computational chemistry},
+ doi = {10.1002/jcc.21334}
+}
+
+
+@misc{WHO24,
+ abstract = {The latest data for coronavirus (COVID-19) cases from the WHO COVID-19 dashboard.},
+ author = {{World Health Organization}},
+ year = {10.01.2024},
+ title = {COVID-19 cases | WHO COVID-19 dashboard},
+ url = {https://data.who.int/dashboards/covid19/cases?n=c},
+ urldate = {21.01.2024}
+}
