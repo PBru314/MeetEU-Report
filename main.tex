@@ -2,13 +2,13 @@
 \usepackage[utf8]{inputenc}
 \usepackage[export]{adjustbox}
 \usepackage{geometry}
- \geometry{
- a4paper,
- total={168mm,257mm},
- left=20mm,
- top=15mm,
- includefoot,includehead
- }
+\geometry{
+	a4paper,
+	total={168mm,257mm},
+	left=20mm,
+	top=15mm,
+	includefoot,includehead
+}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -25,7 +25,7 @@
 \date{February 2024}
 
 \begin{document}
-
+	
 \maketitle
 
 \ihead{\headmark}
@@ -46,9 +46,21 @@ In order to enhance the binding affinity of our drug candidates and thus their p
 \subsection{Molecular Dynamics Simulation}
 As the last step of our pipeline, a MD simulation is conducted using the best scoring compounds as a ligand in the binding pocket of the NSP13 protein. Using GROMACS (Version 2023.3) \cite{package_GROMACS}, this enables us to interpret the stability of the protein-ligand interaction, as well as to identify important residues for the interaction. Using a given force-field, a set of equations describing different forces between the atoms and residues in the protein and ligand, the movement of all atoms in the system can be simulated and analysed. However, this is only possible in a very limited timeframe with a small time step size. As this process is rather resource heavy, it has to be conducted on a cluster with access to a GPU. 
 
-
 \section{Material and Methods}
-\section{Results} 
+\subsection{Datasets from ZINC20 and ECBD}
+A total of 1616 fda approved drugs were downloaded in .sdf format from the ZINC database \cite{Irwin.2020}. Additional, 5016 fiels were retrieved, downloading the pilot library from the ECBD database.
+
+\subsection{Receptor and ligand preparation}
+Ligands were prepared using openbable in order to convert implicit hydrogens into explicit hydrogens, generate necessary 3D structures of the ligands, as well as to split mulitmolecule files into single ones. ADFR suite was further used in order to convert all files into the .pdbqt format, which is required by Autodock Vina. 
+ 
+\subsection{Molecular Docking}
+The Molecular Docking was done twice. First as an initial screening of all 3620 prepared ligands (1472 from the ZINC database, 3620 from the ECBD database). 
+% ECBD pdbqt: 3813 (problematic: 193) = 3620 (size: 28) = 3592
+% ZINC pdbqt: 1567 (problematic: 95) = 1472 (size: 44) = 1428
+For that first step AutoDock Vina 1.1.2 (Vina) was utilized. As the receptor the monomer of the SARS-CoV-2 helicase (ID: 6ZSL) was used which includes only chain A. Especially for Vina the zinc ions were also removed and the resulting structure was converted into the pdbqt format through AutoDockTools 1.5.7. The consensus pocket was introduced as the grid box with lengths of 30 \AA. The exhaustiveness was set to 30 and the maximum number of binding modes to 9. A filter was applied on the set of ligands assuring only 3D structures smaller than the specified grid box were screened against the receptor (1428 from the ZINC database and 3592 from the ECBD database, so 5020 combined). The filter was implemented in Python 3.11.6 and executed together with the Vina command in Bash script. The resulting 9 different conformations for each ligand were ranked by their affinity scores and only the best value was considered in further steps. A number of ligands were later found to have multiple docking results due to an overlap between the two datasets and in accordance with previous steps only the best score was kept. The remaining 4863 ligands were ranked by their affinity score and the top one hundred were selected for next steps. \\
+A second molecular docking was performed with those top scorers from the screening as well as ADP and ATP. The docking software provided by Schrödinger Inc. was accessed through Maestro 2022.3. The included tools Protein Preparation Wizard and LigPrep were utilized to prepare the monomer helicase and ligands for the docking process with the OPLS4 force field. The pH value was set to 7.0. The ligand preparation generates depending on the initial structure a varying amount of conformations. In the analysis of the results only the best performing conformation was included. The Receptor Grid Generation tool was used to generate the receptor grid with the same binding pocket as in Vina. The docking with Glide was performed at standard precision (SP) mode and with flexibility of the ligands enabled. The criteria for the selection of the best performing ligands was chosen to be the docking score. The interactions between the top scoring ligands and the receptor were noted down. 
+
+\section{Results}
 
 \FloatBarrier
 
