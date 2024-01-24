@@ -9,6 +9,11 @@
  top=15mm,
  includefoot,includehead
  }
+
+
+\usepackage[backend=biber, style=authoryear, giveninits=true, maxbibnames=25, uniquename=init, maxcitenames=2, hyperref=true, dashed=false]{biblatex}			% Benutze Biber/BibLaTeX zum Zitieren
+\addbibresource{main.bib}					% Pfad zur BibTeX Datei aus Citavi
+\renewcommand{\cite}{\parencite}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -17,6 +22,7 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{amsmath}
 \usepackage[headsepline]{scrlayer-scrpage}
+\usepackage{acronym}
 
 \clearpairofpagestyles %Seitenzahl nicht in der Kopfzeile
 
@@ -86,9 +92,8 @@ Ligands were prepared using openbable in order to convert implicit hydrogens int
 
 \pagebreak
 \FloatBarrier
-\bibliographystyle{apalike}
-\bibliography{main.bib}
-
+\renewcommand{\bibname}{References}  % damit Literatuverzeicnis mit "References" betitelt
+\printbibliography
 
 
 \end{document}
