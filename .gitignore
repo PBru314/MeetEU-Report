@@ -371,4 +371,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+
+.mind
 # End of https://www.toptal.com/developers/gitignore/api/macos,latex,windows
+.mind
