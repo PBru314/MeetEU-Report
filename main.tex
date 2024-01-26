@@ -104,7 +104,18 @@ The \ac{MD} simulation is an integral part to validate the results of our pipeli
   \caption{\textbf{Visualisation of EOS100380 inside the binding pocket at the end of 100 ns simulation.} The polar interactions are marked with yellow dotted lines. The amino acids involved in these interactions are labelled.}\label{MD.Annotated}
 \end{figure}
 
-The figure clearly demonstrated, that the top scoring compound of our Glide screening stayed inside of the binding pocket until the end of the simulation. Furthermore, the polar interactions between the ligand and residues in its proximity is shown. It seems, that EOS100380 is bound to the protein by interactions with Glu319, Lys320 and Arg442 of the NSP13 helicase. These interactions could also be validated by LigPlot+
+The figure clearly demonstrated, that the top scoring compound of our Glide screening stayed inside of the binding pocket until the end of the simulation. Furthermore, the polar interactions between the ligand and residues in its proximity is shown. It seems, that EOS100380 is bound to the protein by interactions with Glu319, Lys320 and Arg442 of the NSP13 helicase. These interactions could also be validated by LigPlot+ \cite{LigPlot}. \\
+
+To investigate the dynamics of these interactions between ligand and protein, the \ac{RMSD} and \ac{RMSF} were calculated, which can be obeserved in Figure~\ref{rms}. 
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{RMS_Protein.pdf}
+  \end{center}
+  \caption{\textbf{RMSD and RMSF of the protein backbone during the simulation.} The RMSD was plotted over time for the whole 100 ns simulation. The RMSF is shown per residue. The colorbar annotates the protein domain the respective residue belongs to, according to \textcite{Domains}. ZBD = zinc binding domain}
+  \label{rms}
+\end{figure}
+The \ac{RMSD} observed over the course of the simulation (Figure~\ref{rms}A) rises at first, but reaches a plateau after roughly 60 ns. The RMSD seems to settle at roughly 0.5 nm, which is slightly larger than expected. Investigation into the RMSF per residue (Figure~\ref{rms}B) suggests, that some residues move significantly more than others. The highly mobile atoms seem to be located in the zinc binding domain and domains 1B and 2A, which both play a role in the binding of the ligand. Thus movement in these parts of the protein was to be expected. All in all, the protein seems to undergo conformational changes, however it does not show major signs of instability. 
+
 
 \FloatBarrier
 
