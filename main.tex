@@ -96,7 +96,7 @@ Following the tutorial, the simulation space was created, filled with water (a99
 For the analysis of the simulation, \textit{GROMACS} internal tools were used to calculate the RMSD and RMSF of the protein. These scores give us insight into the movement and conformational changes during the simulation regarding protein and ligand. Furthermore, the simulation frames were extracted and rendered into a video using \textit{VMD} \cite{VMD}. For MM-PBSA calculations we used \textit{gmx\_MMPBSA} \cite{MMPBSA1}. This package enables direct calculation of binding affinities using the \textit{GROMACS} output files.
 \section{Results} 
 \subsection{Molecular dynamics simulation validates binding of top scorers}
-The \ac{MD} simulation is an integral part to validate the results of our pipeline. After the production run was finished, the resulting trajectory file was centered on the protein and modified to remove any ghosting and splitting of the protein at the borders of the simulation box. The last frame of the simulation was extracted and visualized using \textit{pyMOL} \cite{PyMOL}, which can be seen in Figure \ref{MD.Annotated}. 
+The \ac{MD} simulation is an integral part to validate the results of our pipeline. After the production run was finished, the resulting trajectory file was centred on the protein and modified to remove any ghosting and splitting of the protein at the borders of the simulation box. The last frame of the simulation was extracted and visualized using \textit{pyMOL} \cite{PyMOL}, which can be seen in Figure \ref{MD.Annotated}. 
 \begin{figure}[h]
   \begin{center}
     \includegraphics[width=0.9\textwidth]{last_frame_render_annotated.pdf}
@@ -111,27 +111,34 @@ To investigate the dynamics of these interactions between ligand and protein, th
   \begin{center}
     \includegraphics[width=1.0\textwidth]{RMS_Protein.pdf}
   \end{center}
-  \caption{\textbf{RMSD and RMSF of the protein backbone during the simulation.} The RMSD was plotted over time for the whole 100 ns simulation. The RMSF is shown per residue. The colorbar annotates the protein domain the respective residue belongs to, according to \textcite{Domains}. ZBD = zinc binding domain}
+  \caption{\textbf{RMSD and RMSF of the protein backbone during the simulation.} The RMSD was plotted over time for the whole 100 ns simulation. The RMSF is shown per residue. The colorbar annotates the protein domain the respective residue belongs to, according to \textcite{Domains}. ZBD = Zinc Binding Domain}
   \label{rms}
 \end{figure}
-The \ac{RMSD} observed over the course of the simulation (Figure~\ref{rms}A) rises at first, but reaches a plateau after roughly 60 ns. The RMSD seems to settle at roughly 0.5 nm, which is slightly larger than expected. Investigation into the RMSF per residue (Figure~\ref{rms}B) suggests, that some residues move significantly more than others. The highly mobile atoms seem to be located in the zinc binding domain and domains 1B and 2A, which both play a role in the binding of the ligand. Thus movement in these parts of the protein was to be expected. All in all, the protein seems to undergo conformational changes, however it does not show major signs of instability. 
+The \ac{RMSD} observed over the course of the simulation (Figure~\ref{rms}A) rises at first, but reaches a plateau after roughly 60 ns. The RMSD seems to settle at roughly 0.5 nm, which is slightly larger than expected. Investigation into the RMSF per residue (Figure~\ref{rms}B) suggests, that some residues move significantly more than others. The highly mobile atoms seem to be located in the zinc binding domain and domains 1B and 2A, which both play a role in the binding of the ligand. Thus movement in these parts of the protein was to be expected. All in all, the protein seems to undergo conformational changes, however it does not show major signs of instability. Further proof of this behaviour can be seen when investigating the radius of gyration (Supplementary Figure \ref{gyr}).
 
 
 \FloatBarrier
 
 \section{Discussion and Outlook}
-The investigation into the \acf{MD} simulation further validated the viability of our pipeline. The RMSD of the backbone protein atoms (see Figure~\ref{rms}A) was slightly higher than anticipated, as it seemed to generally be smaller in the tutorials provided by \citeauthor{Lemkul2018}. However, the system stabilised over theduration of the simulation. Looking at the RMSF per residue (see Figure~\ref{rms}B) it is apparent, that certain domains of the protein lead to this increase in the RMSD. Especially the zinc binding domain shows alot of movement. When discussing the general movement of domain in such simulations one should keep in mind, that the NSP13 A-chain is part of a much bigger replication complex \cite{NSP13_basics} in an \textit{in-vitro} setting. The conformational changes seen in this analysis would be severely hindered by other components in the complex. The domains 1B and 2A were suspected to be involved in alot of conformational changes, as they make up a large part of the interaction surface between the protein and the ligand. The RMSD is calculated versus the output of Glide as a reference structure. It is completely possible, that the system created by Glide is not completely relaxed. Thus conformational changes are to be expected when protein and ligand can suddenly move freely.
+The investigation into the \acf{MD} simulation further validated the viability of our pipeline. The RMSD of the backbone protein atoms (see Figure~\ref{rms}A) was slightly higher than anticipated, as it seemed to generally be smaller in the tutorials provided by \citeauthor{Lemkul2018}. However, the system stabilised over the duration of the simulation. Looking at the RMSF per residue (see Figure~\ref{rms}B) it is apparent, that certain domains of the protein lead to this increase in the RMSD. Especially the zinc binding domain shows alot of movement. When discussing the general movement of domain in such simulations one should keep in mind, that the NSP13 A-chain is part of a much bigger replication complex \cite{NSP13_basics} in an \textit{in-vitro} setting. The conformational changes seen in this analysis would be severely hindered by other components in the complex. The domains 1B and 2A were suspected to be involved in alot of conformational changes, as they make up a large part of the interaction surface between the protein and the ligand. The RMSD is calculated versus the output of Glide as a reference structure. It is completely possible, that the system created by Glide is not completely relaxed. Thus conformational changes are to be expected when protein and ligand can suddenly move freely.
 
 \section{Limitations of the project}
 Regarding the \acf{MD} simulation, the project was held back by the tight time schedule of the Meet-EU seminar. Running simulations for other top scoring ligands would have helped immensely in validating out pipeline further. Additionally, it have put the results generated with the best scoring compound in perspective. Running multiple runs of the same simulation would have also further deepend our confidence in the results, as MD simulations in and of them selves are a very stochastic process and should always be estimated using replicas. Following the work of \textcite{REDS}, implementing replica exchange with dynamical scaling would have elevated the validation step of this project. Access to more GPUs would have also made multiple simulations at once possible. 
 Furthermore, the original plan to implement AutoGrow4 \cite{packageAutogrow4} in order to improve our lead drugs and generate novel compounds was hindered due to technical problems, which could not be fixed with the limit time at our disposal. We believe, that the increase in diversity amongst the drug candidates would lead to a better final drug candidate. With the help of eToxPred, as shown in this report, the new compounds could have been evaluated for their toxicity and a well binding, not too cytotoxic lead could have been presented. 
 
 
-
+\pagebreak
 \section{Supplementary Material}
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{gyration_protein.pdf}
+  \end{center}
+  \caption{Radius of Gyration of the NSP13 protein throught the production run featuring EOS100380.}\label{gyr}
+\end{figure}
 
 \pagebreak
-\FloatBarrier
 
 \renewcommand{\bibname}{References}  % damit Literatuverzeicnis mit "References" betitelt
 \printbibliography
