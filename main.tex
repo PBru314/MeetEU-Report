@@ -38,11 +38,23 @@
 \automark{section}  %Kopfzeile gleich dem Sektiontitel
 \cfoot{\pagemark}   %\ofood Seitenzahl rechts
 
+
+
 \section{Abstract}
-Although the development of vaccines against Sars-CoV-2 was successful during the recent pandemic, the amount of FDA approved drugs for the therapy of Covid-19 is still limited to Paxlovid and Veklury, Olumiant and Actemra \cite{FDACOVID}. One possibility to accelerate the development of new therapies for Covid19 is to screen already approved drugs for effects against the viral reproduction. In this years MeetEU project, we investigated the NSP13 helicase of Sars-CoV-2 and tried to find compounds that could be repurposed for this therapy, as well as novel compounds that could lead to an effective treatment of Covid19. Using our \textit{in-silico} pipeline enables us to evaluate possible drug candidates, suggest novel structures based on already approved drugs and investigate their toxicity, while being cheaper and less labor intensive than projects limited to wet-lab work. 
+Although the development of vaccines against Sars-CoV-2 was successful during the recent pandemic, the amount of FDA approved drugs for the therapy of Covid-19 is still limited to Paxlovid and Veklury, Olumiant and Actemra \cite{FDACOVID}. One possibility to accelerate the development of new therapies for Covid19 is to screen already approved drugs for effects against the viral reproduction. In this years MeetEU project, we investigated the NSP13 helicase of Sars-CoV-2 and tried to find compounds that could be repurposed for this therapy, as well as novel compounds that could lead to an effective treatment of Covid19. Using our \textit{in-silico} pipeline (see graphical abstract) enables us to evaluate possible drug candidates, suggest novel structures based on already approved drugs and investigate their toxicity, while being cheaper and less labor intensive than projects limited to wet-lab work.\\
 \FloatBarrier
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\textwidth]{Workflow_MeetEU.pdf}
+  \caption*{Proposed workflow for the discovery of NSP13 helicase inhibitors.}
+  \label{workflow}
+\end{figure}
+
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{\arabic{figure}}
 \newpage
+
 %    Abkürzungsverzeichnis
 {\setlength{\parskip}{0.2cm}
 \section*{Abbreviations}
@@ -80,7 +92,7 @@ In the wake of the successful development of vaccines against \ac{SARS-CoV-2} du
 This protein is considered a promising drug target for two reasons. Firstly, \ac{NSP13} is part of the \ac{RTC} which is essential for viral RNA synthesis \cite{Malone_2022}. Secondly, its high conservation across coronaviruses means that there is a reduced likelihood of the virus developing resistances to drugs targeting \ac{NSP13} through mutations of the viral genome \cite{Spratt_2021}. Consequently, effective \ac{NSP13} inhibition would significantly impede viral replication and therefore its spread within the host. 
 \ac{NSP13} consists of five domains, namely the \ac{ZBD} with the accessory 2B domain, the $\alpha$-helical stalk domain, as well as the RecA-like 1A and 2A domains \cite{Marecki}. The gap between the RecA-like domains and the 2B domain encompass the site for ATP and RNA binding \cite{NSP13_basics}. In the \ac{RTC} the NSP13 helicase is present as a homodimer. Nevertheless, only one of the copies complexes with a single-stranded RNA \ac{ssRNA}. Therefore, it was proposed in previous publications that the catalytically active form of the \ac{NSP13} helicase is the monomer \cite{Berta_2021}. \\
 
-\noindent Computer-aided, structure-based drug discovery is employed for identification of known drugs for their potential as inhibitors of the \ac{NSP13} helicase which can then be further investigated in experimental laboratory settings. This process involves several steps: (1) Identification of potential drug binding sites, (2) high-throughput screening of ligands to assess their binding efficacy within the  designated pocket, followed by (3) the evaluation of the binding pathways, kinetics, and thermodynamics \cite{Sledz_2018}. Focussing this screening on well-documented or already FDA-approved compounds is very attractive, as drug repurposing has the potential to shorten the development period and therefore also the development costs \cite{Pushpakom_2019}. 
+\noindent Computer-aided, structure-based drug discovery is employed for identification of known drugs for their potential as inhibitors of the \ac{NSP13} helicase which can then be further investigated in experimental laboratory settings. This process involves several steps: (1) Identification of potential drug binding sites, (2) high-throughput screening of ligands to assess their binding efficacy within the  designated pocket, followed by (3) the evaluation of the binding pathways, kinetics, and thermodynamics \cite{Sledz_2018}. Focussing this screening on well-documented or already FDA-approved compounds is very attractive, as drug repurposing has the potential to shorten the development period and therefore also the development costs \cite{Pushpakom_2019}.
 
 %To explore new therapy options it makes sense to perform a  \textit{in-silico} screening of different compounds to identify groups that interact well with the \ac{NSP13} helicase. This screening process involves several steps: Identify possible binding sites, screen ligands for how well they bind in this pocket and validate the findings to generate a suggestion, as to which compounds would be worth it to investigate in a wet-lab setting \cite{Sledz_2018}. Focussing this screening on well documented or already FDA approved compounds significantly simplifies a potential registration of a potential new drug entering the market. 
 
@@ -144,11 +156,47 @@ In order to validate the binding of the discovered compounds, we used GROMACS (V
 
 \section{Results}
 
+\subsection{Molecular dynamics simulation validates binding of top scorer}
+The \ac{MD} simulation is integral to validate the results of our pipeline. After the production run was finished, the resulting trajectory file was centred on the protein and modified to remove any ghosting and splitting of the protein at the borders of the simulation box. The last frame of the simulation was extracted and visualized using \textit{pyMOL} \cite{PyMOL}, which can be seen in Figure \ref{MD.Annotated}.
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.9\textwidth]{last_frame_render_annotated.pdf}
+  \end{center}
+  \caption{\textbf{Visualisation of EOS100380 inside the binding pocket at the end of 100 ns simulation.} The polar interactions are marked with yellow dotted lines. The amino acids involved in these interactions are labelled.}\label{MD.Annotated}
+\end{figure}
+The figure clearly demonstrated, that the top scoring compound of our Glide screening stayed inside of the binding pocket until the end of the simulation. This was also confirmed by manual inspection of the frames generated in the simulation, which were combined to a video file using \textit{VMD}. Furthermore, the polar interactions between the ligand and residues in its proximity are shown. It seems, that EOS100380 is bound to the protein by interactions with Glu319, Lys320 and Arg442 of the NSP13 helicase. These interactions could also be validated using \textit{LigPlot+} \cite{LigPlot}.\\
+To investigate the dynamics of these interactions between ligand and protein, the \ac{RMSD} and \ac{RMSF} were calculated, which can be observed in Figure~\ref{rms}. 
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=1.0\textwidth]{RMS_Protein.pdf}
+  \end{center}
+  \caption{\textbf{RMSD and RMSF of the protein backbone during the simulation.} The RMSD was plotted over time for the whole 100 ns simulation. The RMSF is shown per residue. The colour bar annotates the protein domain the respective residue belongs to, according to \textcite{Domains}. ZBD = Zinc Binding Domain}
+  \label{rms}
+\end{figure}
+The \ac{RMSD} observed over the course of the simulation (Figure~\ref{rms}A) rises at first, but reaches a plateau after roughly 60 ns. The RMSD seems to settle at roughly 0.5 nm, which is slightly larger than expected. Investigation into the RMSF per residue (Figure~\ref{rms}B) suggests, that some residues move significantly more than others. The highly mobile residues seem to be located in the zinc binding domain and domains 1B and 2A. The latter two play a role in the binding of the ligand. Thus movement in these parts of the protein was to be expected. All in all, the protein seems to undergo conformational changes, however it does not show major signs of instability. Further proof of this behaviour can be seen when investigating the radius of gyration (Supplementary Figure \ref{gyr}).
 \FloatBarrier
 
 \section{Discussion and Outlook}
 
+
+
+
+\section{Limitations of the project}
+Regarding the \acf{MD} simulation, the project was held back by the tight time schedule of the Meet-EU seminar. Running simulations for other top scoring ligands would have helped immensely in validating out pipeline further and compare the results of the top scorer. Running multiple runs of the same simulation would have also further deepened our confidence in the results, as MD simulations in and of them selves are a very stochastic process and should always be estimated using replicas. Following the work of \textcite{REDS}, implementing replica exchange with dynamical scaling would have elevated the validation step of this project. Access to more GPUs would have also made multiple simulations at once possible. 
+Furthermore, the original plan to implement AutoGrow4 \cite{packageAutogrow4} in order to improve our lead drugs and generate novel compounds was hindered by technical problems, which could not be fixed with the limited time at our disposal. We believe, that the increase in diversity amongst the drug candidates would lead to a better final drug candidate. With the help of eToxPred, as shown in this report, the new compounds could have been evaluated for their toxicity and a well binding, not too cytotoxic lead could have been presented. 
+
 \section{Supplementary Material}
+
+\setcounter{figure}{0}
+\renewcommand{\thefigure}{S\arabic{figure}}
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.7\textwidth]{gyration_protein.pdf}
+  \end{center}
+  \caption{Radius of Gyration of the NSP13 protein throught the production run featuring EOS100380.}\label{gyr}
+\end{figure}
+
+
 
 \pagebreak
 \FloatBarrier
