@@ -10,7 +10,7 @@
  includefoot,includehead
  }
 
-
+\usepackage{siunitx}
 \usepackage[backend=biber, style=authoryear, giveninits=true, maxbibnames=25, uniquename=init, maxcitenames=2, hyperref=true, dashed=false]{biblatex}			% Benutze Biber/BibLaTeX zum Zitieren
 \addbibresource{main.bib}					% Pfad zur BibTeX Datei aus Citavi
 \renewcommand{\cite}{\parencite}
@@ -117,7 +117,7 @@ Ligands were prepared using OpenBabel (Version 3.1.1, \textcite{OpenBabel}) in o
 To identify a potential ligand binding site of the NSP13 helicase, three different tools based on different methods were used on Chain A of the crystal structures 6ZSL, 5RM2, and 5RME: (i) Fpocket (Version 3.0, \textcite{package_Fpocket}), (ii) PrankWeb 3 (accessed on... , \textcite{package_P2Rank, package_PrankWeb, package_PrankWeb3}), and (iii) FTMap (accessed on..., \textcite{package_FTMAP}).  For Fpocket, only pockets with a \ac{DScore} above 0.2 were considered. These were loaded into PyMol (Version 2.5.7,\textcite{PyMol_endnote}) 
  together with the pockets detected with the other tools. Next, we focused only on the calculated pockets calculated by Fpocket and PrankWeb and identified overlapping pockets using the amino acid sequence and the visualization of the different pockets. These were then considered as one consensus binding site.
 Since, FTMAP follows a docking approach of sixteen small probes rather than calculating pockets, this tool was used to validate that indeed clusters of the small molecules formed inside of the potential consensus binding pocket. 
-Lastly, the coordinates of the consensus binding pocket needed for molecular docking were calculated using the public server at usegalaxy.org of the Galaxy web platform \cite{galaxy}. The docking box size was set to 30 {\AA}^3.
+Lastly, the coordinates of the consensus binding pocket needed for molecular docking were calculated using the public server at usegalaxy.org of the Galaxy web platform \cite{galaxy}. The docking box size was set to $30 \si{\angstrom}^3$.
 
 
 \subsection{Molecular Docking}
