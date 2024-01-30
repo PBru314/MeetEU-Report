@@ -55,6 +55,8 @@ HIER KOMMT EINE ABBILDUNG HIN
         \acro{ssRNA}{single-stranded RNA}
         \acro{DScore}{druggability score}
         \acro{MD}{Molecular dynamics}
+
+
         
         % Formelzeichen
         
@@ -64,6 +66,8 @@ HIER KOMMT EINE ABBILDUNG HIN
         
     \end{acronym}
 }
+
+
 \newpage
 
 \section{Introduction}
@@ -72,7 +76,7 @@ In the \ac{RTC} the NSP13 helicase is present as a homodimer. Nevertheless, only
 
 
 \subsection{Identification of consensus binding pocket}
-In drug discovery, the initial step is to investigate the protein structure in order to analyse potential binding sites. These are cavities on the surface or interior of the protein with suitable properties to bind a ligand. The functionality of a binding pocket is determined by its shape and location, but also by the amino acid residues which define its pyhsicochemical characteristics \cite{Stank_2016}. 
+In drug discovery, the initial step is to investigate the protein structure in order to analyse potential binding sites. These are cavities on the surface or interior of the protein with suitable properties to bind a ligand. The functionality of a binding pocket is determined by its shape and location, but also by the amino acid residues which define its physicochemical characteristics \cite{Stank_2016}. 
 There are both different experimental and theoretical procedures existent to analyse the druggability of such binding pockets. Overall, merging distinct approaches enables a more precise prediction of the resulting consensus binding pocket which can then be further investigated using molecular docking \cite{Ricci_2022}. 
 
 \subsection{Lead Drug Enhancement}
@@ -109,23 +113,13 @@ The resulting consensus binding pocket is located in the ATP binding pocket in b
     \caption{Consensus binding pocket of the NSP13 helicase. The binding pocket is located in the ATP binding pocket in between the two RecA-like domains A1 and A2.}
     \label{consensus_binding_pocket}
 \end{figure}
-
 \FloatBarrier
 
 \section{Discussion and Outlook}
 
 \subsection{Consensus binding site detection}
-In this work, we identified a consensus binding pocket of the NSP13 helicase using three distinct computational tools. It is located between the RecA-like domains A1 and A2 in the ATP binding pocket. This is in agreement with the work by \textcite{Berta_2021} who identified structurally important conserved motifs in the ATP binding site of SARS_CoV-2 NSP13. Out of the 16 amino acids they depicted to interact with ATP 13 are located in the consensus binding pocket identified by us. We conclude, that the combination of the three binding site detection tools \textit{Fpocket}, \textit{PrankWeb}, and \textit{FTMap} is a suitable approach to identify a consensus binding pocket. 
-
-\subsection{Limitations of the study}
-
-Since the identified However, the consensus binding pocket is not necessarily the best binding site for a potential inhibitor of the NSP13 helicase, since the natural ligand ATP is the primary energy currency of the human body, therefore it plays a crucial role in fundamental processes. Thus, inhibiting the ATP binding site selectively is challenging. If failed, this could lead to severe side effects. Therefore, it is important to consider other binding sites as well.  
-
-
-
-%However, detected binding sites detected with \textit{PrankWeb} with a low rank were also considered as part of the consensus binding site. These less important amino acid residues might have shifted the center of the consensus binding pocket. Additionally, adjusting the size of the docking box has led to the detection of ligands which bind outside of the actual ATP binding site. 
-%only include if our top scorerers are located outside of the ATP binding site --> check with pymol for actual location! 
-
+In this work, we identified a consensus binding pocket of the NSP13 helicase using three distinct computational tools. It is located between the RecA-like domains A1 and A2 in the ATP binding pocket. This is in agreement with the work by \textcite{Berta_2021} who identified structurally important conserved motifs in the ATP binding site of SARS-CoV-2 NSP13. Out of the 16 amino acids they depicted to interact with ATP 13 are located in the consensus binding pocket identified by us. We conclude, that the combination of the three binding site detection tools \textit{Fpocket}, \textit{PrankWeb}, and \textit{FTMap} is a suitable approach to identify a consensus binding pocket. 
+However, the consensus binding pocket is not necessarily the best binding site for a potential inhibitor of the NSP13 helicase, since the natural ligand ATP is the primary energy currency of the human body, therefore it plays a crucial role in fundamental processes. Thus, inhibiting the ATP binding site selectively is challenging. If failed, this could lead to severe side effects. Therefore, it is important to consider other binding sites as well. %Quelle fehlt noch!! aber hab noch nichts gefunden :(( 
 
 
 \section{Supplementary Material}
