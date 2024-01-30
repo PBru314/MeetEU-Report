@@ -53,6 +53,8 @@ HIER KOMMT EINE ABBILDUNG HIN
         \acro{ssRNA}{Single-stranded RNA}
         \acro{ZBD}{Zinc binding domain}
         \acro{SARS-CoV-2}{severe acute respiratory syndrome corona virus 2}
+        \acro{FDA}{food and drug administration}
+        \acro{RAS}{renin-angiotensin system}
        
         % Formelzeichen
         
@@ -96,20 +98,23 @@ The general toxicity and synthetic accessibility of the given compounds was esti
 
 \section{Results}
 \subsection{Top 100 Compounds exhibit low toxicity and high synthetic accessibility}
-After identifying the top 100 best-binding ligands through AutoDock Vina, our subsequent analysis focused on evaluating their practical applicability as potential drugs by considering their predicted toxicity and synthetic accessibility. The resulting SAscore and Tox-Score for each compound were visualised in a scatter plot as seen in \ref{eToxPred}. For the visualisation we chose to present 
+After identifying the top 100 best-binding ligands through AutoDock Vina, our subsequent analysis focused on evaluating their practical applicability as potential drugs by considering their predicted toxicity and synthetic accessibility. The resulting SAscore and Tox-Score for each compound were visualised in a scatter plot as seen in {Figure \ref{eToxPred}}. 
 
 \begin{figure}[h]
     \begin{center}
       \includegraphics[width=0.9\textwidth]{etoxpred_result.pdf}
     \end{center}
-    \caption{\textbf{Scatter plot of predicted toxicity and synthetic accessibility of the 100 best-binding compounds.} The predicted \ac{SAscore} was plotted against the Tox-Score for the top 100 best scorers from AutoDock Vina. The top 3 scorers from Glide are marked in red. The vertical gray line represents the threshold for the toxicity.}\label{eToxPred}
+    \caption{\textbf{Scatter plot of predicted toxicity and synthetic accessibility of the 100 best-binding compounds.} The predicted \ac{SAscore} was plotted against the Tox-Score for the top 100 best scorers from AutoDock Vina. The top 3 scorers from Glide are highlighted in red. The vertical gray line represents the threshold for the toxicity, with the compounds to the right of this line being considered non-toxic.}\label{eToxPred}
   \end{figure}
 
-Of those 100 compounds, 99 presented with a Tox-score below the threshold of toxicity, meaning that they are in probability not toxic to humans. The median SAscore across all compounds was 2.69. The top scorer from Glide, ZINC000096077632, was predicted to have a Tox-Score of 0.14 and an SAscore of 5.02.
+Of those 100 compounds, 99 presented with a Tox-score below the threshold of toxicity, indicating a low probability of being toxic to humans. The overall median Tox-Score is 0.24, with a mean of 0.26 across all compounds. Across all compounds the median SAscore of 2.69 and a mean of 2.87 which suggests that they are genereally easy to synthesise. The top scorer from Glide, ZINC000096077632, was predicted to have a Tox-Score of 0.14 and an SAscore of 5.02.
 
 \FloatBarrier
 
 \section{Discussion and Outlook}
+\subsection{toxicity}
+The Tox-Score predictor of \textit{e}ToxPred was trained using \ac{FDA}-approved dataset as non-toxic incidences. Consequently, the low mean Tox-Score of the tested compounds aligns with our expectation, considering that the compounds from the ZINC database are derived from an \ac{FDA}-approved dataset. The single toxic incidence we detected was from the ECBD database which was comprised of \ac{FDA}-approved and non-\ac{FDA}-approved molecules.
+As highlighted by \citeauthor{pu2019toxpred}, natural compounds typically exhibit higher \ac{SAscore} values compared to synthetic compounds due to their inherent complexity \cite{pu2019toxpred}. The relatively high \ac{SAscore} of ZINC000096077632 can be explained by the fact that ZINC000096077632 corresponds to angiotensin-(1-7) which is a naturally occuring compound with a crucial role in the \ac{RAS} \cite{santos2014angiotensin}. The analysis of natural compound datasets by \citeauthor{pu2019toxpred} revealed a bimodal distribution in the \ac{SAscore}, with peaks around 3 and 5. Furthermore the very low Tox-Score of the top scorer can also be explained by the fact that it is a naturally occuring molecule in the human body.
 
 \section{Supplementary Material}
 
