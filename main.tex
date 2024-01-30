@@ -68,6 +68,7 @@ Although the development of vaccines against Sars-CoV-2 was successful during th
     \acro{MD}{molecular dynamics}
     \acro{MM-PBSA}{molecular mechanics energies combined with the Poisson-Boltzmann and surface area continuum solvation}
     \acro{NSP13}{non-structural protein 13}
+    \acro{RAS}{renin-angiotensin system}
     \acro{RCSB PDB}{Research Collaboratory for Structural Bioinformatics Protein Data Bank}
     \acro{RMSD}{root mean square deviation}
     \acro{RMSF}{root mean square fluctuation}
@@ -156,7 +157,20 @@ For the analysis of the simulation, \textit{GROMACS} internal tools were used to
 
 \section{Results}
 
-\subsection{Molecular dynamics simulation validates binding of top scorer}
+\subsection{Top 100 Compounds Exhibit Low Toxicity and High Synthetic Accessibility}
+After identifying the top 100 best-binding ligands through AutoDock Vina, our subsequent analysis focused on evaluating their practical applicability as potential drugs by considering their predicted toxicity and synthetic accessibility. The resulting SAscore and Tox-Score for each compound were visualised in a scatter plot as seen in {Figure \ref{eToxPred}}. 
+
+\begin{figure}[h]
+    \begin{center}
+      \includegraphics[width=0.9\textwidth]{etoxpred_result.pdf}
+    \end{center}
+    \caption{\textbf{Scatter plot of predicted toxicity and synthetic accessibility of the 100 best-binding compounds.} The predicted \ac{SAscore} was plotted against the Tox-Score for the top 100 best scorers from AutoDock Vina. The top 3 scorers from Glide are highlighted in red. The vertical gray line represents the threshold for the toxicity, with the compounds to the right of this line being considered non-toxic.}\label{eToxPred}
+  \end{figure}
+
+Of those 100 compounds, 99 presented with a Tox-score below the threshold of toxicity, indicating a low probability of being toxic to humans. The overall median Tox-Score is 0.24, with a mean of 0.26 across all compounds. Across all compounds the median SAscore of 2.69 and a mean of 2.87 which suggests that they are genereally easy to synthesise. The top scorer from Glide, ZINC000096077632, was predicted to have a Tox-Score of 0.14 and an SAscore of 5.02.
+
+
+\subsection{Molecular Dynamics Simulation Validates Binding of Top Scorer}
 The \ac{MD} simulation is integral to validate the results of our pipeline. After the production run was finished, the resulting trajectory file was centred on the protein and modified to remove any ghosting and splitting of the protein at the borders of the simulation box. The last frame of the simulation was extracted and visualized using \textit{pyMOL} \cite{PyMOL}, which can be seen in Figure \ref{MD.Annotated}.
 \begin{figure}[h]
   \begin{center}
@@ -179,6 +193,9 @@ The \ac{RMSD} observed over the course of the simulation (Figure~\ref{rms}A) ris
 \FloatBarrier
 
 \section{Discussion and Outlook}
+
+The Tox-Score predictor of \textit{e}ToxPred was trained using \ac{FDA}-approved dataset as non-toxic incidences. Consequently, the low mean Tox-Score of the tested compounds aligns with our expectation, considering that the compounds from the ZINC database are derived from an \ac{FDA}-approved dataset. The single toxic incidence we detected was from the ECBD database which was comprised of \ac{FDA}-approved and non-\ac{FDA}-approved molecules.
+As highlighted by \citeauthor{pu2019toxpred}, natural compounds typically exhibit higher \ac{SAscore} values compared to synthetic compounds due to their inherent complexity \cite{pu2019toxpred}. The relatively high \ac{SAscore} of ZINC000096077632 can be explained by the fact that ZINC000096077632 corresponds to angiotensin-(1-7) which is a naturally occuring compound with a crucial role in the \ac{RAS} \cite{santos2014angiotensin}. The analysis of natural compound datasets by \citeauthor{pu2019toxpred} revealed a bimodal distribution in the \ac{SAscore}, with peaks around 3 and 5. Furthermore the very low Tox-Score of the top scorer can also be explained by the fact that it is a naturally occuring molecule in the human body. \\
 
 The investigation into the \acf{MD} simulation further validated the viability of our pipeline. The RMSD of the backbone protein atoms (see Figure~\ref{rms}A) was slightly higher than anticipated, as it seemed to generally be smaller in the tutorials provided by \citeauthor{Lemkul2018}. However, the system stabilised over the duration of the simulation. Looking at the RMSF per residue (see Figure~\ref{rms}B) it is apparent, that certain domains of the protein lead to this increase in the RMSD. Especially the zinc binding domain shows a lot of movement. When discussing the general movement of domains in such simulations one should keep in mind, that the NSP13 A-chain is part of a much bigger replication complex \cite{NSP13_basics} in an \textit{in-vitro} setting. The conformational changes seen in this analysis would be severely hindered by other components in the complex. The domains 1B and 2A were suspected to be involved in a lot of conformational changes, as they make up a large part of the interaction surface between the protein and the ligand. The RMSD is calculated versus the output of Glide as a reference structure. It is completely possible that the system created by Glide is not completely relaxed. Thus conformational changes are to be expected when protein and ligand can suddenly move freely. Comparing the simulation with our top scoring ligand to the one with ANP shows less movement in the ANP run. This was to be expected, as ANP is very close to the original ligand of the helicase (ATP). Furthermore, the crystal structure used as input for the second run already had the ANP bound to begin with. This leads to a more relaxed starting point in general. Comparing RMSD and RMSF however, shows similarities, especially regarding the mobility of the ZBD. This further strengthens our confidence in our pipeline.  All in all, the analysis offers confidence, that EOS100380 binds to the NSP13 helicase and stays bound through an extended period of time.
 
