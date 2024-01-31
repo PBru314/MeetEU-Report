@@ -26,6 +26,8 @@
 \usepackage[headsepline]{scrlayer-scrpage}
 \usepackage{acronym}
 \usepackage{tabularray} % Selina
+\usepackage{booktabs} %  Selina
+\usepackage{makecell} % Selina 
 %needed for Diffdock images
 \usepackage{subcaption}
 \usepackage[labelformat=parens,labelsep=quad,skip=3pt]{caption}
@@ -164,8 +166,8 @@ A second molecular docking was performed with those top scorers from the screeni
 \subsection{Estimation of Toxicity and Synthetic Accessibility}
 The general toxicity and synthetic accessibility of the given compounds was estimated using the machine-learning tool \textit{eToxPred} \cite{pu2019toxpred}. The SMILES files of the Top100 compounds from \textit{AutoDock Vina} \cite{Trott.2010} served as input for the pre-trained model. The toxicity predictor was pre-trained on the FDA-approved and the KEGG-drug datasets whose compounds were considered non-toxic as well as the TOXNET and the T3DB datasets whose compounds were considered toxic using a deep-belief-network based model. This predictor yields a Tox-score between 0 and 1 and in accordance to the paper, all compounds with a Tox-score below 0.58 were deemed non-toxic. The synthetic accessibility was reflected in a \ac{SAscore} which was obtained by training an extra-trees-based classifier on NuBBE, UNPD, FDA-approved, and DUD-E-active datasets.
  
-\subsection{Validation of the binding-site for the Top 100 scorer}
-The likelihood of our Top100 scorer binding within our consensus pocket was validated by blind docking via \textit{Diffdock} \cite{Corso.2022}. Thereby, all required sdf files were transformed into SMILES using \textit{OpenBabel} (Version 3.1.1, \textcite{OpenBabel}). As receptor, the prepared 6ZSL PDB files were utilized. \textit{Diffdock} was performed using the pre-trained scoring model\footnote{https://github.com/gcorso/DiffDock/tree/bc6b5151457ea5304ee69779d92de0fded599a2c/workdir/paper\_score\_model} to infer ligand conformations and ranking based on the included confidence model\footnote{https://github.com/gcorso/DiffDock/tree/bc6b5151457ea5304ee69779d92de0fded599a2c/workdir/paper\_confidence\_model}. The proposed default settings were used for the inference. These contained 20 inference steps, the generation of 40 samples per ligand, a batch-size of 10 and 18 actual denoising steps, whereby no noise was used for the final step of the reverse diffusion process. For the analysis of the \textit{Diffdock} output, the maximum and minimum coordinates for all samples generated per ligand were extracted using \textit{PyMOL} (Version 2.5.5, \textcite{PyMOL}) and aligned with the coordinates of our consensus pocket in Python (Version 3.10, \textcite{Python}). Based on that, the mean number of ligands within our binding site was calculated and set into relation to the rank posed on the ligand samples by the \textit{Diffdock} confidence score.
+\subsection{Validation of the binding-site for the Top 10 scorer}
+The likelihood of our Top100 scorer binding within our consensus pocket was validated by blind docking via \textit{Diffdock} \cite{Corso.2022}. Thereby, all required sdf files were transformed into SMILES using \textit{OpenBabel} (Version 3.1.1, \textcite{OpenBabel}). As receptor, the prepared 6ZSL PDB files were utilized. \textit{Diffdock} was performed using the pre-trained scoring model to infer ligand conformations and ranking based on the included confidence model. The proposed default settings were used for the inference. These contained 20 inference steps, the generation of 40 samples per ligand, a batch-size of 10 and 18 actual denoising steps, whereby no noise was used for the final step of the reverse diffusion process. For the analysis of the \textit{Diffdock} output, the maximum and minimum coordinates for all samples generated per ligand were extracted using \textit{PyMOL} (Version 2.5.5, \textcite{PyMOL}) and aligned with the coordinates of our consensus pocket in Python (Version 3.10, \textcite{Python}). Based on that, the mean number of ligands within our binding site was calculated and set into relation to the rank posed on the ligand samples by the \textit{Diffdock} confidence score.
 
 \subsection{Molecular Dynamics Simulation}
 In order to validate the binding of the discovered compounds, we used \textit{GROMACS} (Version 2023.3, \textcite{packageGROMACS}) to simulate the drugs inside the consensus binding site of NSP13. To do so, the Protein-Ligand Complex tutorial by \Citeauthor{Lemkul2018} was followed \cite{Lemkul2018}. The a99SB-disp forcefield was used, as it was shown to recreate protein structures in different environments very accurately \cite{Forcefield}. The 6ZSL A-chain PDB file was used as input. 
@@ -203,17 +205,6 @@ Analysis of intermolecular interactions between ligand and receptor binding pock
 
 \subsection{Validation of binding-site for the Top10 scorer of Glide}
 As shown in \autoref{pymol_Top3}, \textit{Diffdock} did not validate our binding site for the Top 1 and Top 2 Glide results. None of the predicted conformations were found within our binding pocket. The Top 3 Glide result had two of \textit{Diffdocks} best ranked conformations within our binding pocket. Furthermore, \textit{Diffdocks} confidence into conformations of our Glide Top 3 ligand seems to correlate with their position within our binding pocket (\autoref{Diffdock_plot}). This supports the assumption that the preferred binding site for this ligand is within our binding pocket. Among our Top 10 ligands from \textit{Glide}, better results according to \textit{Diffdock} were only achieved for our Top 5 ligand from \textit{Glide}.
-\begin{figure}[h]
-	\centering
-	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
-	\subcaptionbox{%
-		\label{subfig:top1_glide_diffdock}}{\includegraphics[scale=0.24]{Top1_Glide_Rank5}}
-	\subcaptionbox{%
-		\label{subfig:top2_glide_diffdock}}{\includegraphics[scale=0.24]{Top2_Glide_Rank5}}
-  	\subcaptionbox{%
-		\label{subfig:top3_glide_diffdock}}{\includegraphics[scale=0.24]{Top3_Glide_Rank5}}
-	\caption{Diffdock results for our Top 3 Glide ligands. Shown are always the 5 ligand conformations Diffdock was most confident in. (a) Glide Top-1 (b) Glide Top-2 and (c) Glide Top-3.}\label{pymol_Top3}
-\end{figure}
 
 \subsection{Top 100 Compounds Exhibit Low Toxicity and High Synthetic Accessibility}
 After identifying the top 100 best-binding ligands through \textit{AutoDock Vina}, our subsequent analysis focused on evaluating their practical applicability as potential drugs by considering their predicted toxicity and synthetic accessibility. The resulting SAscore and Tox-Score for each compound were visualized in a scatter plot as seen in {Figure \ref{eToxPred}}. 
@@ -245,8 +236,7 @@ The \ac{RMSD} observed over the course of the simulation (Figure~\ref{rms}A) ris
 
 \section{Discussion and Outlook}
 Molecular Docking was performed using the FDA approved ligands from ZINC and the pilot library from ECBD. The Top 100 Vina results were further analysed by Glide and their toxicity and synthetic accessibility estimated via eToxPred. Validation of our Top 10 scorer was achieved by blind docking with Diffdock and MD-Simulation using GROMACS. In conclusion, our findings suggest Angiotensin 1-7 as lead compound. This result is further supported by \textcite{angio}, who proposed Angiotensin 1-7 as a new therapy to support the recovery from Covid-19.\\
-
-Our results were mainly based on the ranks proposed by Glide. This decision was made based on the fact that our Vina results were limited due to the rigidness of molecules and missing zinc ions in the protein. We further experienced the Vina search algorithm to produces randomly altered conformations of the ligand molecule which had a large impact on the affinity values and rank. Diffdock did not predict our Top 1 Glide result within our binding pocket. This could indicate that our top one ligand preferably binds at another place. However, Diffdocks overall confidence in it the predicted conformations weren't to high as indicated by negative confidence scores. Furthermore, MD-simulation analysis offered confidence, that Angiotensin 1-7 binds to the NSP13 helicase and stays bound through an extended period of time.\\
+Our results were mainly based on the ranks proposed by Glide. This decision was made based on the fact that our Vina results were limited due to the rigidness of molecules and missing zinc ions in the protein. We further experienced the Vina search algorithm to produces randomly altered conformations of the ligand molecule which had a large impact on the affinity values and rank \cite{Zev201}. Diffdock did not predict our Top 1 Glide result within our binding pocket. This could indicate that our top one ligand preferably binds at another place. However, Diffdocks overall confidence in it the predicted conformations weren't to high as indicated by negative confidence scores \cite{Corso.2022}. Furthermore, MD-simulation analysis offered confidence, that Angiotensin 1-7 binds to the NSP13 helicase and stays bound through an extended period of time.\\
 
 \noindent The investigation into the \acf{MD} simulation further validated the viability of our pipeline. The RMSD of the backbone protein atoms (see Figure~\ref{rms}A) was slightly higher than anticipated, but the system stabilized over the duration of the simulation. Looking at the RMSD per residue (see Figure~\ref{rms}B) it is apparent, that certain domains of the protein lead to this increase in the RMSD. Especially the zinc binding domain shows a lot of movement. This was also observed throughout the simulation with ANP as the ligand (see \ref{anp}). Its RMSD was lower in general, which was to be expected as it is structurally very similar to ATP, however the result gives confidence in the stability of our system. When discussing the general movement of domains in such simulations one should keep in mind, that the NSP13 A-chain is part of a much bigger replication complex \cite{NSP13_basics} in an \textit{in-vitro} setting. The conformational changes seen in this analysis would be severely hindered by other components in the complex. The domains 1B and 2A were suspected to be involved in a lot of conformational changes, as they make up a large part of the interaction surface between the protein and the ligand. Investigating the RMSD of the ligand shows, that it too settles in a stable conformation during the simulation time span. The result of the \ac{MM-PBSA} calculation also suggests that interactions happen between the protein and our ligand, which can be seen by a negative $\Delta G_{solv}$.
 All in all, the analysis offers confidence, that Angiotensin 1-7 binds to the NSP13 helicase and stays bound through an extended period of time. This fits the work of \textcite{angio}, who propose Angiotensin 1-7 as a new therapy to support the recovery from Covid-19. Next to its role in the Renin-Angiotensin-Aldosteron System, it seemingly could also lower the viral damage to the body by inhibiting NSP13.
@@ -275,6 +265,8 @@ However, the consensus binding pocket is not necessarily the best binding site f
 
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
+\setcounter{table}{0}
+\renewcommand{\thetable}{S\arabic{table}}
 
 \begin{figure}[htp]
 	\centering
@@ -284,14 +276,14 @@ However, the consensus binding pocket is not necessarily the best binding site f
 	\subcaptionbox{%
 		\label{subfig:comp_scores}}{\includegraphics[scale=0.5]{Comparison_of_scores.png}}
 	\caption{Comparison of Vina and Glide docking results. 100 ligands were compared in \subref{subfig:comp_ranks}) ranks and \subref{subfig:comp_scores}) docking scores. Dots in blue represent the top 5 ligands from Vina and in orange the top 5 from Glide. All the other top 100 ligands are marked grey.}\label{fig:comp_glide_vina}
-\end{figure}\\
+\end{figure}
 
 % for appendix
 \begin{table}[htp]
 	\centering
 	\caption{Glide docking scores for the top 4 ligands, ATP and ADP.}\label{tab:top_docking_scores}
 	\begin{tblr}{
-			hline{1-2,12} = {-}{},
+			hline{1-2,8} = {-}{},
 		}
 		Title            & docking score \\
 		ATP              & -7.991        \\
@@ -301,6 +293,39 @@ However, the consensus binding pocket is not necessarily the best binding site f
 		ZINC000150588351 & -6.655        \\
 		ADP              & -6.63         \\   
 	\end{tblr}
+\end{table}
+
+\begin{table}[htp]
+	\caption{List of top 1-5 ligands with IDs, docking scores from Glide and molecular structure.}\label{tab:top1-5}
+	\begin{tabular}{cccc}
+%		
+		\toprule
+		Rank & 	ID  & \makecell{Glide docking score \\ kcal/mol}& Molecule  \\
+		\midrule
+		1 & \makecell{ZINC000096077632 \\EOS100380} & -7.573 &  \adjustimage{width=8cm,valign=m}{ZINC000096077632.png} \\
+		2 & {ZINC000008101127} & -7.273 &  \adjustimage{width=8cm,valign=m}{ZINC000008101127.png} \\
+		3 & \makecell{ZINC000035880991 \\EOS100897} & -6.786 &  \adjustimage{width=8cm,valign=m}{ZINC000035880991.png} \\
+		4 & {ZINC000150588351} & -6.655 &  \adjustimage{width=8cm,valign=m}{ZINC000150588351.png} \\
+		5 & \makecell{ZINC000072139230 \\EOS2443} & -6.598 &  \adjustimage{width=8cm,valign=m}{ZINC000072139230.png} \\
+		\bottomrule
+%		
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\caption{List of top 6-10 ligands with IDs, docking scores from Glide and molecular structure.}\label{tab:top6-10}
+	\begin{tabular}{cccc}
+		\toprule
+		Rank & 	ID  & \makecell{Glide docking score \\ kcal/mol}& Molecule  \\
+		\midrule
+		6 & \makecell{ZINC000014806405 \\EOS101245} & -6.569 &  \adjustimage{width=8cm,valign=m}{ZINC000014806405.png} \\
+		7 & \makecell{ZINC000085654587 \\EOS716} & -6.554 &  \adjustimage{width=8cm,valign=m}{ZINC000085654587.png} \\
+		8 & \makecell{ZINC000065362103 \\EOS2388} & -6.552 &  \adjustimage{width=8cm,valign=m}{ZINC000065362103.png} \\
+		9 & \makecell{ZINC000011679756 \\EOS100645} & -6.549 &  \adjustimage{width=8cm,valign=m}{ZINC000011679756.png} \\
+		10 & \makecell{ZINC000150338709 \\EOS100926} & -6.517 &  \adjustimage{width=8cm,valign=m}{ZINC000072139230.png} \\
+		\bottomrule
+	\end{tabular}
+	
 \end{table}
 
 \begin{table}[htp]
@@ -327,15 +352,18 @@ However, the consensus binding pocket is not necessarily the best binding site f
 	\end{tblr}
 \end{table}
 
+\clearpage
+\pagebreak
+
 % for appendix
-\begin{figure}[htp]
+\begin{figure}[h]
 	\centering
 	\captionsetup[subfigure]{skip=-20pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
 	\subcaptionbox{%
 		\label{subfig:EOS100380}}{\includegraphics[scale=0.5]{docking_EOS100380.png}}
 	\subcaptionbox{%
 		\label{subfig:EOS100380_s}}{\includegraphics[scale=0.57]{docking_EOS100380_surface.png}}
-	\caption{Molecular docking of the top scoring ligand with Glide. The result of the docking process with the top scoring ligand (ECBD ID: EOS100380) is shown with focus on \subref{subfig:EOS100380}) the specific interactions between ligand and receptor protein and \subref{subfig:EOS100380_s}) position within the binding pocket. The different interactions between the two molecules are coloured depending on type. Hydrogen bonds are shown as yellow and salt bridges as violet.}\label{fig:docking_EOS100380}
+	\caption{Molecular docking of the top scoring ligand with Glide. The result of the docking process with the top scoring ligand (ECBD ID: ZINC000096077632) is shown with focus on \subref{subfig:EOS100380}) the specific interactions between ligand and receptor protein and \subref{subfig:EOS100380_s}) position within the binding pocket. The different interactions between the two molecules are coloured depending on type. Hydrogen bonds are shown as yellow and salt bridges as violet.}\label{fig:docking_EOS100380}
 \end{figure}
 
 % for appendix
@@ -348,6 +376,27 @@ However, the consensus binding pocket is not necessarily the best binding site f
 		\label{subfig:ADP_s}}{\includegraphics[scale=0.5]{docking_ADP_surface.png}}
 	\caption{Molecular docking of the ADP with Glide. The result of the docking process with ADP is shown with focus on \subref{subfig:ADP}) the specific interactions between ligand and receptor protein and \subref{subfig:ADP_s}) position within the binding pocket. The different interactions between the two molecules are coloured depending on type. Hydrogen bonds are shown as yellow, salt bridges as violet, aromatic hydrogen bonds as blue and pi-cation as green.}\label{fig:docking_ADP}
 \end{figure}
+
+
+\begin{figure}[h]
+	\centering
+	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
+	\subcaptionbox{%
+		\label{subfig:top1_glide_diffdock}}{\includegraphics[scale=0.33]{Top1_Glide_Rank5}}
+	\subcaptionbox{%
+		\label{subfig:top2_glide_diffdock}}{\includegraphics[scale=0.33]{Top2_Glide_Rank5}}
+	\subcaptionbox{%
+		\label{subfig:top3_glide_diffdock}}{\includegraphics[scale=0.33]{Top3_Glide_Rank5}}
+	\caption{Diffdock results for our Top 3 Glide ligands. Shown are always the 5 ligand conformations Diffdock was most confident in. (a) Glide Top-1 (b) Glide Top-2 and (c) Glide Top-3.}\label{pymol_Top3}
+\end{figure}
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.5\textwidth]{diffdock_percentage_graph}
+	\end{center}
+	\caption{Percentage of ligand conformation within our binding site in relation to the selection made by Diffdock}\label{Diffdock_plot}
+\end{figure}
+
 
 \begin{figure}[h]
   \begin{center}
@@ -363,12 +412,6 @@ However, the consensus binding pocket is not necessarily the best binding site f
   \caption{RMSD and RMSF of Protein backbone for the simulation with ANP}\label{anp}
 \end{figure}
 
-\begin{figure}[h]
-  \begin{center}
-    \includegraphics[width=0.8\textwidth]{diffdock_percentage_graph}
-  \end{center}
-  \caption{Percentage of ligand conformation within our binding site in relation to the selection made by Diffdock}\label{Diffdock_plot}
-\end{figure}
 
 \begin{figure}[h]
   \begin{center}
