@@ -10,7 +10,7 @@
  includefoot,includehead
  }
 \usepackage[backend=biber, style=authoryear, giveninits=true, maxbibnames=25, uniquename=init, maxcitenames=2, hyperref=true, dashed=false]{biblatex}			% Benutze Biber/BibLaTeX zum Zitieren
-\addbibresource{main.bib}
+\addbibresource{report_short.bib}
 \usepackage{caption}
 \usepackage{subcaption}
 \usepackage{graphicx}
@@ -40,7 +40,7 @@
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{Workflow_MeetEU.pdf}
-  \caption*{\textbf{Proposed workflow for the discovery of NSP13 helicase inhibitors.}Following }
+  \caption*{\textbf{Proposed workflow for the discovery of NSP13 helicase inhibitors.} }
   \label{workflow}
 \end{figure}
 
@@ -50,14 +50,21 @@
 
 \section{Material and Methods}
 \subsection{Datasets from ZINC20 and ECBD}
-A total of 1616 \ac{FDA}-approved drugs were downloaded in \textit{.sdf} format from the ZINC database \cite{Irwin.2020}. Additionally, 5016 files were retrieved, downloading the pilot library from the ECBD database.
+A total of 1616 FDA-approved drugs were downloaded in \textit{.sdf} format from the ZINC database \cite{Irwin.2020}. Additionally, 5016 files from the ECBD pilot library were downloaded.
 
 \subsection{Receptor and Ligand Preparation}
+Three protein structures of NSP13 (PDB codes: 6ZSL, 5RME, and 5RM2) were downloaded from RCSB PDB for consensus pocket detection. Further analysis was conducted using the A chain of 6ZSL that was prepared using \textit{PDBFixer} \cite{Eastman_2017}. Ligands were prepared using \textit{OpenBabel} \cite{OpenBabel}.
 \subsection{Consensus binding site detection}
+\text{Fpocket} \cite{package_Fpocket}, \textit{PrankWeb 3} \cite{package_P2Rank,package_PrankWeb,package_PrankWeb3}, and \textit{FTMap} \cite{package_FTMAP} were used for pocket detection. The docking box was set to have an edge length of 30 \AA.
+
 \subsection{Molecular Docking}
+Molecular docking was performed using \textit{AutoDock Vina} \cite{Trott.2010} and \textit{Glide} \cite{Friesner2004}. Docking results were validated through blind docking with \textit{DiffDock} \cite{Corso.2022}.
+
 \subsection{Estimation of Toxicity and Synthetic Accessibility}
-\subsection{Validation of the binding-site for the Top100 scorer}
+Toxicity and synthetic accessibility of the Top 100 scorers from \textit{AutoDock Vina} were predicted using \textit{eToxPred} \cite{pu2019toxpred}.
+
 \subsection{Molecular Dynamics Simulation}
+In order to validate the binding of the top scorer, a molecular dynamics simulation was performed using \textit{Gromacs} \cite{packageGROMACS}.
 
 \section{Results}
 
