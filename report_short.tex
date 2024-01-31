@@ -40,7 +40,7 @@
 \begin{figure}[h]
   \centering
   \includegraphics[width=\textwidth]{Workflow_MeetEU.pdf}
-  \caption*{\textbf{Proposed workflow for the discovery of NSP13 helicase inhibitors.} }
+  \caption*{\textbf{Workflow for the discovery of NSP13 helicase inhibitors.} Following preparation of ligands with from the ZINC and ECBD databases with \textcite{OpenBabel} and PDB preparation with \textit{PDBFixer}, the consensus pocket of 6ZSL NSP13 helicase of SARS-CoV-2 was detected using \textit{Fpocket}. Molecular Docking was first performed with \textit{AutoDock Vina} and results were validated using \textit{Glide} and textit{DiffDock}. The toxicity and synthetic accessibility of the \textit{AutoDock Vina} top scorers was determined using \textit{eToxPred} and lastly a molecular dynamics simulation with \textit{Gromacs} was performed to validate novel drug candidates.}
   \label{workflow}
 \end{figure}
 
@@ -54,6 +54,7 @@ A total of 1616 FDA-approved drugs were downloaded in \textit{.sdf} format from 
 
 \subsection{Receptor and Ligand Preparation}
 Three protein structures of NSP13 (PDB codes: 6ZSL, 5RME, and 5RM2) were downloaded from RCSB PDB for consensus pocket detection. Further analysis was conducted using the A chain of 6ZSL that was prepared using \textit{PDBFixer} \cite{Eastman_2017}. Ligands were prepared using \textit{OpenBabel} \cite{OpenBabel}.
+
 \subsection{Consensus binding site detection}
 \text{Fpocket} \cite{package_Fpocket}, \textit{PrankWeb 3} \cite{package_P2Rank,package_PrankWeb,package_PrankWeb3}, and \textit{FTMap} \cite{package_FTMAP} were used for pocket detection. The docking box was set to have an edge length of 30 \AA.
 
