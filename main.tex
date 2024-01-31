@@ -102,14 +102,8 @@ Protein Data Bank files often contain problems that first need to be resolved, s
 For consensus binding site detection 6ZSL was used as a reference structure to align 5RME and 5RM2 in PyMol (Version 2.5.7, \textcite{PyMol_endnote}).This allowed better visualization and superimposition of the results.
 
 \Subsection{Clustering of Compounds}
-Lastly, for a deeper understanding of the potential inhibitors of NSP13, we clustered the 10 top scoring compounds we obtained from \textit{Glide} as well as the top 10 ligands the other Teams "Sorebonne5" and "Warsaw1" identified after molecular docking. For one, all 30 compounds were hierarchically clustered based by structural similarity. This was done using the \textit{ChemmineR} package from the Cheminformatic Toolkit for R \cite{ChemmineR}. This first calculates atom pair descriptors for each compound that are then used to calculate a similarity matrix using the Tanimoto coefficient. By subtracting the Tanimoto coefficients from 1, a distance matrix is obtained which is then clustered using the single-linkage method. The resulting heatmap is shown in Figure \ref{hc_structure}.
-Secondly, we clustered the respective compounds based on their physicochemical properties. For this, we calculated the \ac{HBD}, the \ac{HBA}, the \ac{MW}, and the \ac{LogP} for each compound using Open Babel Descriptors.  To estimate whether the identified compounds are orally active and therefore are drug-like, we filtered the compounds based on the Lipinski's rule of five \cite{Lipinski_1997}. The resulting heatmap with the compounds fulfilling this rule is shown in Figure \ref{hc_properties}.  
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{heatmap.pdf}
-    \caption{\textbf{Comparison of the (A) structural and (B) physico-chemical properties of the top scoring compounds from Sorbonne5 (H), Warsaw1 (W), and Heidelberg (H).} The first heatmap(A) is based on the distances of the compounds calculated using the Tanimoto coefficient. In (B) the physic-chemical properties were determined using Open Babel descriptors (\acl{HBD}, \acl{HBA}, \acl{MW}, \acl{logP}). Here, only compounds fulfilling Lipinski's rule of five are shown.}
-    \label{hc_properties} 
-\end{figure}
+Lastly, for a deeper understanding of the potential inhibitors of NSP13, we clustered the 10 top scoring compounds we obtained from \textit{Glide} as well as the top 10 ligands the other Teams "Sorebonne5" and "Warsaw1" identified after molecular docking. For one, all 30 compounds were hierarchically clustered based by structural similarity. This was done using the \textit{ChemmineR} package from the Cheminformatic Toolkit for R \cite{ChemmineR}. This first calculates atom pair descriptors for each compound that are then used to calculate a similarity matrix using the Tanimoto coefficient. By subtracting the Tanimoto coefficients from 1, a distance matrix is obtained which is after conduction of then clustered using the single-linkage method. Therefore, most similar structures get a score equal to 1 and the most dissimilar structure a score equal to zero. The resulting heatmap is shown in Figure \ref{hc_structure}.
+Secondly, we clustered the respective compounds based on their physicochemical properties. For this, we calculated the \ac{HBD}, the \ac{HBA}, the \ac{MW}, and the \ac{LogP} for each compound using Open Babel Descriptors.  To estimate whether the identified compounds are orally active and therefore are drug-like, we filtered the compounds based on the Lipinski's rule of five \cite{Lipinski_1997}. 
 
 \subsection{Consensus binding site detection}
 To identify a potential ligand binding site of the NSP13 helicase, three different tools based on different methods were jointly used on Chain A of the crystal structures 6ZSL, 5RM2, and 5RME: (i) \textit{Fpocket} (Version 3.0, \textcite{package_Fpocket}), (ii) \textit{PrankWeb 3} (accessed on 27.12.2023, \textcite{package_P2Rank, package_PrankWeb, package_PrankWeb3}), and (iii) \textit{FTMap} (accessed on 7.12.2023, \textcite{package_FTMAP}).  
@@ -134,6 +128,17 @@ The resulting consensus binding pocket is located in the ATP binding pocket in b
     \label{consensus_binding_pocket}
 \end{figure}
 \FloatBarrier
+
+\subsection{Clustering of compounds}
+To analyse the overall top 30 scoring compounds from the docking simulations of the three Teams ("Warsaw1", "Sorbonne5", and "Heidelberg"), we first clustered them based on their structural similarity (Figure \ref{hc_properties} (A)). Here, we can see that the three compounds on ranks 4,5, and 6 from "Sorbonne5" are most dissimilar. However, overall the compounds cannot clearly be divided into clusters. This is also reflected in the heatmap based on the physicochemical properties of the compounds (Figure \ref{hc_properties} (B)). Nevertheless, 22 out of the 30 compounds investigated fulfil Lipinski's rule of five. Interestingly, all of the removed compounds have in common that they contain more than 10 \ac{HBA}. 5 out of these compounds were detected by our Team "Heidelberg" which also include our top scoring ligand. The other three compounds came from "Sorbonne5". 
+The resulting heatmap with the compounds with their calculated physico-chemical properties, fulfilling Lipinski's rule are shown in Figure \ref{hc_properties} (B).  
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{heatmap.pdf}
+    \caption{\textbf{Comparison of the (A) structural and (B) physico-chemical properties of the top scoring compounds from Sorbonne5 (H), Warsaw1 (W), and Heidelberg (H).} The first heatmap(A) is based on the distances of the compounds calculated using the Tanimoto coefficient. In (B) the physic-chemical properties were determined using Open Babel descriptors (\acl{HBD}, \acl{HBA}, \acl{MW}, \acl{logP}). Here, only compounds fulfilling Lipinski's rule of five are shown.}
+    \label{hc_properties} 
+\end{figure}
 
 \section{Discussion and Outlook}
 
