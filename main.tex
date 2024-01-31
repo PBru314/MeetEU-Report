@@ -175,6 +175,7 @@ Following the tutorial, the simulation space was set up, filled with water (a99S
 For the analysis of the simulation, \textit{GROMACS} internal tools were used to calculate the RMSD and RMSF of the protein. These scores give us insight into the movement and conformational changes during the simulation regarding protein and ligand. Furthermore, the simulation frames were extracted and rendered into a video using \textit{VMD} \cite{VMD}. For MM-PBSA calculations we used \textit{gmx\_MMPBSA} \cite{MMPBSA1}. This package enables direct estimation of binding affinities using the \textit{GROMACS} output files.
 
 \section{Results}
+\subsection{Molecular Docking Top scorers with Glide}
 The 100 top scorers from the screening were subjected to another molecular docking to the NSP13 helicase. The resulting docking scores from Glide were utilised to establish another ranking. The comparison of the results from Vina and Glide showed that there was no correlation between these ranks (\autoref{fig:comp_glide_vina}). The Pearson correlation coefficient r of the scores is 0.13 with a p-value of 0.19 which is similar to the r value of the ranks at 0.12 with a p-value of 0.22. The Kendall correlation coefficient computed by comparing the ranks only is 0.07 with a p-value of 0.25. In all three cases it is not possible to reject the null hypothesis of no correlation. Even so, there are 3 from the top 5 Vina scorers (rank 1, 2 and 4) that are also part of the top 10 (rank 9, 10 and 8) according to Glide. Moving forward docking scores from Glide are the preferred selection criteria since Glide provided flexibility of ligands and the retainment of the protein zinc ions. \\
 
 % for appendix
@@ -265,22 +266,17 @@ The Team Sorbonne5 also used AutoDock Vina for the docking of ligands from the p
 
 
 \subsection{Validation of binding-site for the Top10 scorer of Glide}
-As shown in \autoref{pymol_Top3}, Diffdock did not validate our binding site for our Top 1 and Top 2 glide results. All predicted conformations weren't found within our designated binding site. For our Top 3 Glide on the other hand, at least two the 10\% predictions Diffdock is most confident in, seem to have interaction with our binding site. As shown in \autoref{Diffdock_plot} Diffdocks confidence into conformations of our Glide Top 3 ligand seems to correlate with their position within our binding pocket, which supports the assumption that this ligand does have its preferred binding site within our pocket. Among our Top 10 Glide ligands, better results according to diffdock were only achieved for our Top 5.
-\begin{figure}[h]
+As shown in \autoref{pymol_Top3}, Diffdock did not validate our binding site for our Top 1 and Top 2 glide results. None of the predicted conformations Diffdock was most confident in were found within our designated binding site. For our Top 3 Glide result on the other hand, at least two of the 10\% ranked best by Diffdock seem to have interaction with our binding site and are defined as being within our binding pocket. Furthermore, Diffdocks confidence into conformations of our Glide Top 3 ligand seems to correlate with their position within our binding pocket (Supplementary Material \autoref{Diffdock_plot}). This findings supports the assumption that the preferred binding site for this ligand is within our binding pocket. Among our Top 10 Glide ligands, better results according to Diffdock were only achieved for our Top 5 Glide ligand.
+\begin{figure}[htp]
 	\centering
-	\begin{subfigure}{5cm}
-		\centering\includegraphics[width=7cm]{Top1_Glide_Rank5}
-		\caption{Glide Top-1}
-	\end{subfigure}
-	\begin{subfigure}{5cm}
-		\centering\includegraphics[width=7cm]{Top2_Glide_Rank5}
-		\caption{Glide Top-2}
-	\end{subfigure}
-	\begin{subfigure}{5cm}
-		\centering\includegraphics[width=7cm]{Top3_Glide_Rank5}
-		\caption{Glide Top-3}
-	\end{subfigure}
-	\caption{Diffdock results for our Top 3 Glide ligands. Shown are always the 5 ligand conformations Diffdock was most confident in. (a) Glide Top-1 (b) Glide Top-2 and (c) Glide Top-3.}\label{pymol_Top3}
+	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
+	\subcaptionbox{%
+		\label{subfig:top1_glide_diffdock}}{\includegraphics[scale=0.5]{Top1_Glide_Rank5}}
+	\subcaptionbox{%
+		\label{subfig:top2_glide_diffdock}}{\includegraphics[scale=0.5]{Top2_Glide_Rank5}}
+  	\subcaptionbox{%
+		\label{subfig:top3_glide_diffdock}}{\includegraphics[scale=0.5]{Top3_Glide_Rank5}}
+	\caption{{Diffdock results for our Top 3 Glide ligands. Shown are always the 5 ligand conformations Diffdock was most confident in. (a) Glide Top-1 (b) Glide Top-2 and (c) Glide Top-3.}\label{pymol_Top3}
 \end{figure}
 
 \subsection{Top 100 Compounds Exhibit Low Toxicity and High Synthetic Accessibility}
