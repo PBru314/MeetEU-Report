@@ -121,6 +121,17 @@ After identifying the top 100 best-binding ligands through AutoDock Vina, our su
 
 Of those 100 compounds, 99 presented with a Tox-score below the threshold of toxicity, indicating a low probability of being toxic to humans. The overall median Tox-Score is 0.24, with a mean of 0.26 across all compounds. Across all compounds the median SAscore of 2.69 and a mean of 2.87 which suggests that they are genereally easy to synthesise. The top scorer from Glide, ZINC000096077632, was predicted to have a Tox-Score of 0.14 and an SAscore of 5.02.
 
+\subsection{Clustering of compounds}
+Comparison of the results from the docking simulations of the three paired teams ("Warsaw1", "Sorbonne5", and "Heidelberg") was performed by clustering the top 30 scoring compounds of the teams based on their structural similarity (Figure \ref{hc_properties} (A)). Here, we can see that the three compounds on ranks 4,5, and 6 from "Sorbonne5" are most dissimilar to each other. Overall the compounds cannot clearly be divided into clusters. This is also reflected in the heatmap that was created based on the physico-chemical properties of the compounds (Figure \ref{hc_properties} (B)). Nevertheless, 22 out of the 30 investigated compounds fulfill Lipinski's Rule of Five. Interestingly, all of the removed compounds share the property that they contain more than 10 \ac{HBA}. Of these compounds, five were detected by team Heidelberg, including our top scoring ligand. The other three compounds came from "Sorbonne5" and none came from "Warsaw1". 
+The resulting heatmap of the 22 compounds that fulfill Lipinski's rule and their physico-chemical properties are shown in Figure \ref{hc_properties} (B).  
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{heatmap.pdf}
+    \caption{\textbf{Comparison of the (A) structural and (B) physico-chemical properties of the top scoring compounds from Sorbonne5 (H), Warsaw1 (W), and Heidelberg (H).} The first heatmap(A) is based on the distances of the compounds calculated using the Tanimoto coefficient. In (B) the physic-chemical properties were determined using Open Babel descriptors (\acl{HBD}, \acl{HBA}, \acl{MW}, \acl{logP}). Here, only compounds fulfilling Lipinski's rule of five are shown.}
+    \label{hc_properties} 
+\end{figure}
+
 \FloatBarrier
 
 \section{Discussion and Outlook}
