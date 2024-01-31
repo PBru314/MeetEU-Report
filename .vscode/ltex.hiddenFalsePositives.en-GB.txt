@@ -1,2 +1,3 @@
 {"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QThere are both different experimental and theoretical procedures existent to analyse the druggability of such binding pockets.\\E$"}
 {"rule":"CONFUSION_OF_THEN_THAN","sentence":"^\\QOverall, merging distinct approaches enables a more precise prediction of the resulting consensus binding pocket which can then be further investigated using molecular docking \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_GB","sentence":"^\\QBy subtracting the Tanimoto coefficients from 1, a distance matrix is obtained which is then clustered using the single-linkage method.\\E$"}

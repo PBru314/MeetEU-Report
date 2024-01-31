@@ -55,6 +55,11 @@ HIER KOMMT EINE ABBILDUNG HIN
         \acro{ssRNA}{single-stranded RNA}
         \acro{DScore}{druggability score}
         \acro{MD}{Molecular dynamics}
+        \acro{MW}{molecular weight}
+        \acro{HBD}{number of hydrogen-bond donors}
+        \acro{HBA}{number of hydrogen-bond acceptors}
+        \acro{MW}{molecular weight}
+        \acro{LogP}{octanol-water partition coefficient}
 
 
         
@@ -91,6 +96,24 @@ In this project we analysed crystal structures of the SARS-CoV-2 NSP13 helicase 
 Protein Data Bank files often contain problems that first need to be resolved, so they can be simulated. Therefore, we prepared the PDB protein structure using the PDBFixer (Version 1.9) application, which among other things adds missing hydrogen and heavy atoms, builds missing loops and replaces non-canonical with canonical amino acids \cite{Eastman_2017}. Here, we added hydrogen atoms appropriate for the physiological pH of 7.4. Since the catalytically active form of NSP13 helicase is the monomer \cite{Berta_2021}, the additional second copy (Chain B) contained in the crystallographic structure, was removed as well as all phosphates and the ligands contained in the protein structures 5RME and 5RM2. Additionally, for molecular Docking using AutoDock Vina and for the \ac{MD} simulation the zinc ions were removed. 
 For consensus binding site detection 6ZSL was used as a reference structure to align 5RME and 5RM2 in PyMol (Version 2.5.7, \textcite{PyMol_endnote}).This allowed better visualization and superimposition of the results.
 
+\Subsection{Clustering of Compounds}
+Lastly, for a deeper understanding of the potential inhibitors of NSP13, we clustered the 10 top scoring compounds we obtained from \textit{Glide} as well as the top 10 ligands the other Teams "Sorebonne5" and "Warsaw3" identified after molecular docking. For one, all 30 compounds were hierarchically clustered based by structural similarity. This was done using the \textit{ChemmineR} package from the Cheminformatic Toolkit for R \cite{ChemmineR}. This first calculates atom pair descriptors for each compound that are then used to calculate a similarity matrix using the Tanimoto coefficient. By subtracting the Tanimoto coefficients from 1, a distance matrix is obtained which is then clustered using the single-linkage method. The resulting heatmap is shown in Figure \ref{hc_structure}. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{dendrogram.pdf}
+    \caption{Comparison of the structural properties of the top scoring compounds from Sorbonne5, Warsaw3, and Heidelberg.}
+    \label{hc_structure} 
+
+\textit{ChemMineR} (\cite{ChemmineR}) 
+
+Secondly, we clustered the respective compounds based on their physicochemical properties. For this, we calculated the \ac{HBD}, the \ac{HBA}, the \ac{MW}, and the \ac{LogP} for each compound using Open Babel Descriptors.  To estimate whether the identified compounds are orally active and therefore are drug-like, we filtered the compounds based on the Lipinski's rule of five \cite{Lipinski_1997}. The resulting heatmap with the compounds fulfilling this rule is shown in Figure \ref{hc_properties}.  
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{dendrogram.pdf}
+    \caption{Comparison of the physico-chemical properties of the top scoring compounds from Sorbonne5, Warsaw3, and Heidelberg, which fulfill Lipinski's rule of five.}
+    \label{hc_properties} 
+\end{figure}
+
 \subsection{Consensus binding site detection}
 To identify a potential ligand binding site of the NSP13 helicase, three different tools based on different methods were jointly used on Chain A of the crystal structures 6ZSL, 5RM2, and 5RME: (i) \textit{Fpocket} (Version 3.0, \textcite{package_Fpocket}), (ii) \textit{PrankWeb 3} (accessed on 27.12.2023, \textcite{package_P2Rank, package_PrankWeb, package_PrankWeb3}), and (iii) \textit{FTMap} (accessed on 7.12.2023, \textcite{package_FTMAP}).  
 \textit{Fpocket} utilises a geometry-based algorithm based on Voronoi tessellation and sequential clustering to determine potential binding sites \cite{package_Fpocket}. Then, for each pocket different properties from the atoms of the pocket are calculated and a \ac{DScore} is assigned based on which the pockets are ranked \cite{package_Fpocket}. 
@@ -120,6 +143,7 @@ The resulting consensus binding pocket is located in the ATP binding pocket in b
 \subsection{Consensus binding site detection}
 In this work, we identified a consensus binding pocket of the NSP13 helicase using three distinct computational tools. It is located between the RecA-like domains A1 and A2 in the ATP binding pocket. This is in agreement with the work by \textcite{Berta_2021} who identified structurally important conserved motifs in the ATP binding site of SARS-CoV-2 NSP13. Out of the 16 amino acids they depicted to interact with ATP 13 are located in the consensus binding pocket identified by us. We conclude, that the combination of the three binding site detection tools \textit{Fpocket}, \textit{PrankWeb}, and \textit{FTMap} is a suitable approach to identify a consensus binding pocket. 
 However, the consensus binding pocket is not necessarily the best binding site for a potential inhibitor of the NSP13 helicase, since the natural ligand ATP is the primary energy currency of the human body, therefore it plays a crucial role in fundamental processes. Thus, inhibiting the ATP binding site selectively is challenging. If failed, this could lead to severe side effects. Therefore, it is important to consider other binding sites as well. %Quelle fehlt noch!! aber hab noch nichts gefunden :(( 
+
 
 
 \section{Supplementary Material}
