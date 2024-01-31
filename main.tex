@@ -23,6 +23,7 @@
 \usepackage{amsmath}
 \usepackage[headsepline]{scrlayer-scrpage}
 \usepackage{acronym}
+\usepackage{tabularray} % Selina
 %needed for Diffdock images
 \usepackage{subcaption}
 \usepackage[labelformat=parens,labelsep=quad,skip=3pt]{caption}
@@ -172,6 +173,95 @@ Following the tutorial, the simulation space was set up, filled with water (a99S
 For the analysis of the simulation, \textit{GROMACS} internal tools were used to calculate the RMSD and RMSF of the protein. These scores give us insight into the movement and conformational changes during the simulation regarding protein and ligand. Furthermore, the simulation frames were extracted and rendered into a video using \textit{VMD} \cite{VMD}. For MM-PBSA calculations we used \textit{gmx\_MMPBSA} \cite{MMPBSA1}. This package enables direct estimation of binding affinities using the \textit{GROMACS} output files.
 
 \section{Results}
+The 100 top scorers from the screening were subjected to another molecular docking to the NSP13 helicase. The resulting docking scores from Glide were utilised to establish another ranking. The comparison of the results from Vina and Glide showed that there was no correlation between these ranks (\autoref{fig:comp_glide_vina}). The Pearson correlation coefficient r of the scores is 0.13 with a p-value of 0.19 which is similar to the r value of the ranks at 0.12 with a p-value of 0.22. The Kendall correlation coefficient computed by comparing the ranks only is 0.07 with a p-value of 0.25. In all three cases it is not possible to reject the null hypothesis of no correlation. Even so, there are 3 from the top 5 Vina scorers (rank 1, 2 and 4) that are also part of the top 10 (rank 9, 10 and 8) according to Glide. Moving forward docking scores from Glide are the preferred selection criteria since Glide provided flexibility of ligands and the retainment of the protein zinc ions. \\
+
+% for appendix
+\begin{figure}[htp]
+	\centering
+	\captionsetup[subfigure]{skip=-20pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
+	\subcaptionbox{%
+		\label{subfig:comp_ranks}}{\includegraphics[scale=0.5]{Comparison_of_ranks.png}}
+	\subcaptionbox{%
+		\label{subfig:comp_scores}}{\includegraphics[scale=0.5]{Comparison_of_scores.png}}
+	\caption{Comparison of Vina and Glide docking results. 100 ligands were compared in  \subref{subfig:comp_ranks}) ranks and \subref{subfig:comp_scores}) docking scores. Dots in blue represent the top 5 ligands from Vina and in orange the top 5 from Glide. All the other ligands are marked green.}\label{fig:comp_glide_vina}
+\end{figure}
+
+The potential lead compounds defined in this way are as follows: ZINC000096077632 (ECBD ID: EOS100380, popular name: Angiotensin 1-7), ZINC000008101127 and ZINC000035880991 (ECBD ID: EOS100897, ZINC-ID: VX-11). Each one of these ligands has a better docking score and therefore higher affinity to the receptor than ADP (\autoref{tab:top_docking_scores}). However ATP still binds better than any one them.
+
+% for appendix
+\begin{table}[htp]
+	\centering
+	\caption{Glide docking scores for the top 4 ligands, ATP and ADP.}\label{tab:top_docking_scores}
+	\begin{tblr}{
+			hline{1-2,12} = {-}{},
+		}
+		 Title            & docking score \\
+		 ATP              & -7.991        \\
+		 EOS100380        & -7.573        \\
+		 ZINC000008101127 & -7.273        \\
+		 EOS100897        & -6.786        \\
+		 ZINC000150588351 & -6.655        \\
+		 ADP              & -6.63         \\   
+	\end{tblr}
+\end{table}
+
+Another output are the iintermolecular interactions between the small molecules and the receptor binding pocket. Interesting to note is that especially ATP, ADP and the highest top scorer EOS100380 have many common 
+bonds with the amino acids like LYS 288, LYS 320 and ARG 443 (\autoref{tab:ligand_interactions}). In most cases these bonds are either hydrogen bonds or salt bridges with some exceptions like an aromatic hydrogen bonds, halogen bonds or pi-cation. One amino acid in particular stands out which is LYS 288 that also interacts with the other top 3 scorers ZINC000008101127 and EOS100897. 
+
+\begin{table}[htp]
+	\centering
+	\caption{List of intermolecular interactions between ligands and receptor protein.}\label{tab:ligand_interactions}
+	\begin{tblr}{
+			hline{1-2,16} = {1-3}{},
+		}
+		Ligand           & Bond type       & Amino acid                                                        &  \\
+		ADP              & hydrogen bond   & {GLY 287, LYS 288, SER 289, HIE 290, \\LYS 320, ARG 443, SER 539} &  \\
+		& aromatic h-bond & LYS 320                                                           &  \\
+		& salt bridge    & LYS 288, LYS 320, ARG 443                                         &  \\
+		& Pi-cation       & ARG 443                                                           &  \\
+		ATP              & hydrogen bond   & {GLY 287, LYS 288, SER 289, HIE 290, \\ARG 443, GLH 375}          &  \\
+		& salt bridge    & LYS 288, LYS 320, ARG 443                                         &  \\
+		EOS100380        & hydrogen bond   & {LYS 288, LYS 320, ASP 315, GLU 319, \\GLU 341, ARG 443, GLU 540} &  \\
+		& salt bridge    & {LYS 288, LYS 320, ASP 315, GLU 319,~ \\ARG 443, GLU 540}         &  \\
+		ZINC000008101127 & hydrogen bond   & ARG 178                                                           &  \\
+		& aromatic h-bond & GLY 538                                                           &  \\
+		& salt bridge    & LYS 288                                                           &  \\
+		EOS100897        & hydrogen bond   & ASP 534                                                           &  \\
+		& halogen bond    & ASN 516, THR 532                                                  &  \\
+		& Pi-cation       & LYS 288                                                           &  
+	\end{tblr}
+\end{table}
+
+When comparing the overall positions of EOS100380 (\autoref{fig:docking_EOS100380}) and ADP (\autoref{fig:docking_ADP}) within the binding pocket the similarities are even more apparent. 
+
+% for appendix
+\begin{figure}[htp]
+	\centering
+	\captionsetup[subfigure]{skip=-20pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
+	\subcaptionbox{%
+		\label{subfig:EOS100380}}{\includegraphics[scale=0.5]{docking_EOS100380.png}}
+	\subcaptionbox{%
+		\label{subfig:EOS100380_s}}{\includegraphics[scale=0.57]{docking_EOS100380_surface.png}}
+	\caption{Molecular docking of the top scoring ligand with Glide. The result of the docking process with the top scoring ligand (ECBD ID: EOS100380) is shown with focus on \subref{subfig:EOS100380}) the specific interactions between ligand and receptor protein and \subref{subfig:EOS100380_s}) position within the binding pocket. The different interactions between the two molecules are coloured depending on type. Hydrogen bonds are shown as yellow and salt bridges as violet.}\label{fig:docking_EOS100380}
+\end{figure}
+
+% for appendix
+\begin{figure}[htp]
+	\centering
+	\captionsetup[subfigure]{skip=-20pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
+	\subcaptionbox{%
+		\label{subfig:ADP}}{\includegraphics[scale=0.45]{docking_adp.png}}
+	\subcaptionbox{%
+		\label{subfig:ADP_s}}{\includegraphics[scale=0.5]{docking_ADP_surface.png}}
+	\caption{Molecular docking of the ADP with Glide. The result of the docking process with ADP is shown with focus on \subref{subfig:ADP}) the specific interactions between ligand and receptor protein and \subref{subfig:ADP_s}) position within the binding pocket. The different interactions between the two molecules are coloured depending on type. Hydrogen bonds are shown as yellow, salt bridges as violet, aromatic hydrogen bonds as blue and pi-cation as green.}\label{fig:docking_ADP}
+\end{figure}
+
+
+\subsection{Comparison of AutoDock Vina results}
+%This part only makes sense if they actually used the same pocket? Don't think they used the same 6zsl structure ...
+The Team Sorbonne5 also used AutoDock Vina for the docking of ligands from the pilot library of the ECBD database. Most of these ligands were also included in the former mentioned analysis. With the exception of two it is possible to map the top 10 ligands from Sorbonne to results of the analysis. Only one of their top scorers is included in the 100 preselected ligands. Their first ranked ligand with the affinity score -11.1 has a corresponding rank of 63. The remaining 7 were mapped to lower ranks starting with 123 and ending with up to 2626.
+
+
 \subsection{Validation of binding-site for the Top10 scorer of Glide}
 As shown in \autoref{pymol_Top3}, Diffdock did not validate our binding site for our Top 1 and Top 2 glide results. All predicted conformations weren't found within our designated binding site. For our Top 3 Glide on the other hand, at least two the 10\% predictions Diffdock is most confident in, seem to have interaction with our binding site. As shown in \autoref{Diffdock_plot} Diffdocks confidence into conformations of our Glide Top 3 ligand seems to correlate with their position within our binding pocket, which supports the assumption that this ligand does have its preferred binding site within our pocket. Among our Top 10 Glide ligands, better results according to diffdock were only achieved for our Top 5.
 \begin{figure}[h]
