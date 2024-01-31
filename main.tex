@@ -113,7 +113,7 @@ This protein is considered a promising drug target for two reasons. Firstly, \ac
 
 \subsection{Identification of consensus binding pocket}
 In drug discovery, the initial step is to investigate the protein structure in order to analyse potential binding sites. These are cavities on the surface or interior of the protein with suitable properties to bind a ligand. The functionality of a binding pocket is determined by its shape and location, but also by the amino acid residues which define its physicochemical characteristics \cite{Stank_2016}. 
-There are both different experimental and theoretical procedures existent to analyse the druggability of such binding pockets. Overall, merging distinct approaches enables a more precise prediction of the resulting consensus binding pocket which can then be further investigated using molecular docking \cite{Ricci_2022}. 
+Both different experimental and theoretical procedures existt to analyse the druggability of such binding pockets. Overall, merging distinct approaches enables a more precise prediction of the resulting consensus binding pocket which can then be further investigated using molecular docking \cite{Ricci_2022}. 
 
 
 \subsection{Molecular Docking}
@@ -178,6 +178,21 @@ Following the tutorial, the simulation space was set up and filled with water (a
 For the analysis of the simulation, \textit{GROMACS} internal tools were used to calculate the RMSD and RMSF of the protein, according to the \textit{GROMACS} manual \cite{packageGROMACS}. These scores give us insight into the movement and conformational changes during the simulation regarding protein and ligand. Furthermore, the simulation frames were extracted and rendered into a video using \textit{VMD} \cite{VMD}. For MM-PBSA calculations we used \textit{gmx\_MMPBSA} \cite{MMPBSA1}. This package enables direct estimation of binding affinities using the \textit{GROMACS} output files.
 
 \section{Results}
+
+\subsection{Consensus binding site detection}
+%Before we could screen ligand libraries for potential inhibitors, the druggability of the surface of the NSP13 helicase needed to be investigated to determine ligand binding sites. For a more precise identification three different crystal structures (PDB codes: 6ZSL, 5RM2, 5RME) were analysed using three different tools which follow distinct computational methods. The calculated binding hot spots were visualised in \textit{PyMol} and overlapping ones were merged through visual examination to obtain a consensus binding site.
+The first step of our drug discovery pipeline, is the detection of the consensus binding site using three distinct computational tools. 
+Overall, the hot spots calculated with \textit{Fpocket} overlapping between the three crystal structures all ranked first among the calculated binding sites for each crystal structure. Their \acp{DScore} were 0.647 for 6ZSL, 0.383 for 5RM2, and 0.875 for 5RME. Also, the respective overlapping binding sites calculated with \textit{PrankWeb} ranked either first (5RM2 and 5RME) or second (6ZSL) among the calculated binding sites. Therefore, the respective \textit{Scores} and calculated \textit{Probability} was also among the highest for these binding sites (Score of 9.69 and Probability of 0.562 for 6ZSL, Score of 22.15 and Probability of 0.860 for 5RM2, and a Score of 17.91 and a Probability of 0809 for 5RME). Additionally, four hot spots were detected for 6ZSL and 5RME which contained some amino acids in common with the just mentioned binding site. These were also merged into the consensus binding pocket. However, they were ranked lower by \textit{PrankWeb} and also contained additional amino acids not present in the highest ranked binding sites. 
+Interestingly, for the crystal structure 5RME a second binding hot spot was detected in proximity to the 1B domain. Nevertheless, because this binding site was only found in one crystal structure and the underlying pockets were ranked very low by both \textit{Fpocket} and \textit{PrankWeb}, this binding site was not considered for further analysis.
+The resulting consensus binding pocket is located in the ATP binding pocket in between the two RecA-like domains A1 and A2 (Figure \ref{consensus_binding_pocket}). 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.6\textwidth]{consens_domain_big.pdf}
+    \caption{Consensus binding pocket of the NSP13 helicase. The binding pocket is located in the ATP binding pocket in between the two RecA-like domains A1 and A2.}
+    \label{consensus_binding_pocket}
+\end{figure}
+\FloatBarrier
+%figure wird noch kleiner, wenn bild von pocket hinzugefügt wird
 
 \subsection{Evaluation of Molecular Docking}
 The 100 top scorers from Vina were subjected to Glide. The lead compounds as per Glide are listed in \autoref{tab:top_docking_scores}. All of them had a higher docking score and therefore higher affinity to the receptor than ADP but a lower affinity compared to ATP.\\
@@ -248,6 +263,10 @@ The \ac{RMSD} observed over the course of the simulation (Figure~\ref{rms}A) ris
 \FloatBarrier
 
 \section{Discussion and Outlook}
+
+In this work, we identified a consensus binding pocket of the NSP13 helicase using three distinct computational tools. It is located between the RecA-like domains A1 and A2 in the ATP binding pocket. This is in agreement with the work by \textcite{Berta_2021} who identified structurally important conserved motifs in the ATP binding site of SARS-CoV-2 NSP13. Out of the 16 amino acids they depicted to interact with ATP 13 are located in the consensus binding pocket identified by us. We conclude, that the combination of the three binding site detection tools \textit{Fpocket}, \textit{PrankWeb}, and \textit{FTMap} is a suitable approach to identify a consensus binding pocket. 
+However, the consensus binding pocket is not necessarily the best binding site for a potential inhibitor of the NSP13 helicase, since the natural ligand ATP is the primary energy currency of the human body, therefore it plays a crucial role in fundamental processes. Thus, inhibiting the ATP binding site selectively is challenging. If failed, this could lead to severe side effects. Therefore, it is important to consider other binding sites as well. %Quelle fehlt noch!! aber hab noch nichts gefunden :(( 
+
 
 The Tox-Score predictor of \textit{e}ToxPred was trained using \ac{FDA}-approved dataset as non-toxic incidences. Consequently, the low mean Tox-Score of the tested compounds aligns with our expectation, considering that the compounds from the ZINC database are derived from an \ac{FDA}-approved dataset. The single toxic incidence we detected was from the ECBD database which was comprised of \ac{FDA}-approved and non-\ac{FDA}-approved molecules.
 As highlighted by \citeauthor{pu2019toxpred}, natural compounds typically exhibit higher \ac{SAscore} values compared to synthetic compounds due to their inherent complexity \cite{pu2019toxpred}. The relatively high \ac{SAscore} of ZINC000096077632 can be explained by the fact that ZINC000096077632 corresponds to angiotensin-(1-7) which is a naturally occuring compound with a crucial role in the \ac{RAS} \cite{santosangiotensin}. The analysis of natural compound datasets by \citeauthor{pu2019toxpred} revealed a bimodal distribution in the \ac{SAscore}, with peaks around 3 and 5. Furthermore the very low Tox-Score of the top scorer can also be explained by the fact that it is a naturally occuring molecule in the human body. \\
