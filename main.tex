@@ -176,13 +176,9 @@ For the analysis of the simulation, \textit{GROMACS} internal tools were used to
 
 \section{Results}
 
-\subsection{Screening of ligands with AutoDock Vina}
-A library of 5020 ligands was screened against the consensus binding pocket of the NSP13 helicase. The best conformation with the lowest binding affinity was determined for each one of these ligands. 157 of them were included two or three times. The respective difference of affinity between the multiple forms of each ligand never exceeded 1.6. In 24.2 \% of these cases the affinity score remained the same. Whenever the difference is not equal to zero the corresponding rank of the affinities changed with a maximum margin of 2966. In the case of multiple runs for each ligand the best scoring docking result was kept. The remaining 4862 had affinity values ranging from -10.3 to -2.4. The ranking of the ligands was determined by their affinity which lead to the selection of the top one hundred ligands. Their values ranged from -10.3 to -8.8. Containing 2.1 \% of all ligands these top scorers are only the preselection for the subsequent docking process. 
-
-
-\subsection{Molecular Docking Top scorers with Glide}
-The 100 top scorers from the screening were subjected to another molecular docking to the NSP13 helicase. The resulting docking scores from Glide were utilised to establish another ranking. The comparison of the results from Vina and Glide showed that there was no correlation between these ranks (\autoref{fig:comp_glide_vina}). The Pearson correlation coefficient r of the scores is 0.13 with a p-value of 0.19 which is similar to the r value of the ranks at 0.12 with a p-value of 0.22. The Kendall correlation coefficient computed by comparing the ranks only is 0.07 with a p-value of 0.25. In all three cases it is not possible to reject the null hypothesis of no correlation. Even so, there are 3 from the top 5 Vina scorers (rank 1, 2 and 4) that are also part of the top 10 (rank 9, 10 and 8) according to Glide. Moving forward docking scores from Glide are the preferred selection criteria since Glide provided flexibility of ligands and the retainment of the protein zinc ions. \\
-
+\subsection{Evaluation of Molecular Docking}
+The 100 top scorers from Vina were subjected to Glide. The lead compounds as per Glide are listed in \autoref{tab:top_docking_scores}. All of them had a higher docking score and therefore higher affinity to the receptor than ADP but a lower affinity compared to ATP.\\
+In comparison, Vina and Glide results showed no correlation between their ranks (\autoref{fig:comp_glide_vina}). The Pearson correlation coefficient r of the scores is 0.13 with a p-value of 0.19 which is similar to the r value of the ranks at 0.12 with a p-value of 0.22. However, 3 of Vina's top 5 scorers (rank 1, 2 and 4) were still part of the Top 10 Glide results (rank 9, 10 and 8). 
 \begin{figure}[htp]
 	\centering
 	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
@@ -190,28 +186,19 @@ The 100 top scorers from the screening were subjected to another molecular docki
 		\label{subfig:comp_ranks}}{\includegraphics[scale=0.5]{Comparison_of_ranks.png}}
 	\subcaptionbox{%
 		\label{subfig:comp_scores}}{\includegraphics[scale=0.5]{Comparison_of_scores.png}}
-	\caption{Comparison of Vina and Glide docking results. 100 ligands were compared in  \subref{subfig:comp_ranks}) ranks and \subref{subfig:comp_scores}) docking scores. Dots in blue represent the top 5 ligands from Vina and in orange the top 5 from Glide. All the other ligands are marked green.}\label{fig:comp_glide_vina}
-\end{figure}
+	\caption{Comparison of Vina and Glide docking results. 100 ligands were compared in \subref{subfig:comp_ranks} ranks and \subref{subfig:comp_scores} docking scores. Dots in blue represent the top 5 ligands from Vina and in orange the top 5 from Glide. All the other ligands are marked green.}\label{fig:comp_glide_vina}
+\end{figure}\\
+Analysis of intermolecular interactions between ligand and receptor binding pocket showed many bonds our Top 1 scorer from Glide has in common with ADP and ATP (LYS 288, LYS 320 and ARG 443). LYS 288 was thereby of particular interest, as it further interacts with our Top 2 and Top 3 scorer (\autoref{tab:ligand_interactions}). In most cases these bonds are either hydrogen bonds or salt bridges with some exceptions like an aromatic hydrogen bonds, halogen bonds or pi-cation.
+%
+%When comparing the overall positions of EOS100380 (\autoref{fig:docking_EOS100380}) and ADP (\autoref{fig:docking_ADP}) within the binding pocket the similarities are even more apparent. 
 
-The potential lead compounds defined in this way are as follows: ZINC000096077632 (ECBD ID: EOS100380, popular name: Angiotensin 1-7), ZINC000008101127 and ZINC000035880991 (ECBD ID: EOS100897, ZINC-ID: VX-11). Each one of these ligands has a better docking score and therefore higher affinity to the receptor than ADP (\autoref{tab:top_docking_scores}). However ATP still binds better than any one them.
-
-
-Another output are the iintermolecular interactions between the small molecules and the receptor binding pocket. Interesting to note is that especially ATP, ADP and the highest top scorer EOS100380 have many common 
-bonds with the amino acids like LYS 288, LYS 320 and ARG 443 (\autoref{tab:ligand_interactions}). In most cases these bonds are either hydrogen bonds or salt bridges with some exceptions like an aromatic hydrogen bonds, halogen bonds or pi-cation. One amino acid in particular stands out which is LYS 288 that also interacts with the other top 3 scorers ZINC000008101127 and EOS100897. 
-
-
-When comparing the overall positions of EOS100380 (\autoref{fig:docking_EOS100380}) and ADP (\autoref{fig:docking_ADP}) within the binding pocket the similarities are even more apparent. 
-
-
-
-\subsection{Comparison of AutoDock Vina results}
-%This part only makes sense if they actually used the same pocket? Don't think they used the same 6zsl structure ...
-The Team Sorbonne5 also used AutoDock Vina for the docking of ligands from the pilot library of the ECBD database. Most of these ligands were also included in the former mentioned analysis. With the exception of two it is possible to map the top 10 ligands from Sorbonne to results of the analysis. Only one of their top scorers is included in the 100 preselected ligands. Their first ranked ligand with the affinity score -11.1 has a corresponding rank of 63. The remaining 7 were mapped to lower ranks starting with 123 and ending with up to 2626.
-
+%\subsection{Comparison of AutoDock Vina results}
+%%This part only makes sense if they actually used the same pocket? Don't think they used the same 6zsl structure ...
+%The Team Sorbonne5 also used AutoDock Vina for the docking of ligands from the pilot library of the ECBD database. Most of these ligands were also included in the former mentioned analysis. With the exception of two it is possible to map the top 10 ligands from Sorbonne to results of the analysis. Only one of their top scorers is included in the 100 preselected ligands. Their first ranked ligand with the affinity score -11.1 has a corresponding rank of 63. The remaining 7 were mapped to lower ranks starting with 123 and ending with up to 2626.
 
 \subsection{Validation of binding-site for the Top10 scorer of Glide}
-As shown in \autoref{pymol_Top3}, Diffdock did not validate our binding site for our Top 1 and Top 2 glide results. None of the predicted conformations Diffdock was most confident in were found within our designated binding site. For our Top 3 Glide result on the other hand, at least two of the 10\% ranked best by Diffdock seem to have interaction with our binding site and are defined as being within our binding pocket. Furthermore, Diffdocks confidence into conformations of our Glide Top 3 ligand seems to correlate with their position within our binding pocket (Supplementary Material \autoref{Diffdock_plot}). This findings supports the assumption that the preferred binding site for this ligand is within our binding pocket. Among our Top 10 Glide ligands, better results according to Diffdock were only achieved for our Top 5 Glide ligand.
-\begin{figure}[htp]
+As shown in \autoref{pymol_Top3}, Diffdock did not validate our binding site for the Top 1 and Top 2 Glide results. None of the predicted conformations were found within our binding pocket. The Top 3 Glide result had two of Diffdocks best ranked conformations within our binding pocket. Furthermore, Diffdocks confidence into conformations of our Glide Top 3 ligand seems to correlate with their position within our binding pocket (\autoref{Diffdock_plot}). This supports the assumption that the preferred binding site for this ligand is within our binding pocket. Among our Top 10 Glide ligands, better results according to Diffdock were only achieved for our Top 5 Glide ligand.
+\begin{figure}[h]
 	\centering
 	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
 	\subcaptionbox{%
