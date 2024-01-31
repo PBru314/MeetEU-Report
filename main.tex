@@ -77,6 +77,7 @@ The development of innovative therapeutics is essential for preventing another C
     \acro{ATP}{adenosine triphosphate}
     \acro{COVID-19}{coronavirus disease 2019}
     \acro{DScore}{druggability score}
+    \acro{ECBD}{European Chemical Biology Database}
     \acro{FDA}{food and drug administration}
     \acro{MD}{molecular dynamics}
     \acro{MM-PBSA}{molecular mechanics energies combined with the Poisson-Boltzmann and surface area continuum solvation}
@@ -131,7 +132,7 @@ As the last step in our pipeline, a \ac{MD} simulation was be conducted using th
 
 \section{Material and Methods}
 \subsection{Datasets from ZINC20 and ECBD}
-A total of 1616 \ac{FDA}-approved drugs were downloaded in \textit{.sdf} format from the ZINC database \cite{Irwin.2020}. Additionally, 5016 files of the \ac{ECBD} pilot library were downloaded.
+A total of 1616 \ac{FDA}-approved drugs were downloaded in \textit{.sdf} format from the ZINC database \cite{Irwin.2020}. Additionally, 5016 files of the \ac{ECBD} pilot library \cite{ecbd_website} were downloaded.
 
 \subsection{Receptor and Ligand Preparation}
 In this project we analysed crystal structures of the \ac{SARS-CoV-2} \ac{NSP13} helicase which were obtained by \cite{NSP13_basics} in a crystallographic fragment screening. Thus, the three protein structures (PDB codes: 6ZSL, 5RME, 5RM2) were downloaded from the \ac{RCSB PDB}. All three structures were used to determine a consensus binding pocket. As 6ZSL is the crystal structure with the highest resolution of 1.94 {\AA} and the other two structures show the \ac{NSP13} helicase complexed with a different fragment, we selected 6ZSL for further analysis in our drug discovery pipeline. Although the helicase is a homodimer, it was found that only the monomer is the catalytically active form \cite{Berta_2021}. Therefore, we concentrated our drug discovery only on the monomer of the helicase, namely on chain A. \\
@@ -193,8 +194,8 @@ The resulting consensus binding pocket is located in the ATP binding pocket in b
 %figure wird noch kleiner, wenn bild von pocket hinzugefügt wird
 
 \subsection{Evaluation of Molecular Docking}
-The 100 top scorers from Vina were subjected to Glide. The lead compounds as per Glide are listed in \autoref{tab:top_docking_scores}. All of them had a higher docking score and therefore higher affinity to the receptor than ADP, but a lower affinity compared to ATP.\\
-In comparison, Vina and Glide results showed no correlation between their ranks (\autoref{fig:comp_glide_vina}). The Pearson correlation coefficient r of the scores is 0.13 with a p-value of 0.19 which is similar to the r value of the ranks at 0.12 with a p-value of 0.22. However, 3 of Vina's top 5 scorers (rank 1, 2 and 4) were still part of the Top 10 Glide results (rank 9, 10 and 8). 
+The 100 top scorers from Vina were subjected to Glide. The lead compounds as per Glide are listed in \autoref{tab:top_docking_scores}. All of them had a higher docking score and therefore higher affinity to the receptor than ADP, but a lower affinity compared to ATP. The molecular structures of the best performing ligands are presented in \autoref{tab:top1-5} and \ref{tab:top6-10}.\\
+In comparison, Vina and Glide results showed no correlation between their ranks (\autoref{fig:comp_glide_vina}). The Pearson correlation coefficient r of the scores is 0.13 with a p-value of 0.19 which is similar to the r value of the ranks at 0.12 with a p-value of 0.22. However, 3 of Vina's top 5 scorers (rank 1, 2 and 4) were still part of the Top 10 Glide results (rank 9, 10 and 8). \\
 Analysis of intermolecular interactions between ligand and receptor binding pocket showed many bonds our Top 1 scorer from Glide has in common with ADP and ATP (LYS 288, LYS 320 and ARG 443). LYS 288 was thereby of particular interest, as it further interacts with our Top 2 and Top 3 scorer (\autoref{tab:ligand_interactions}). In most cases these bonds are either hydrogen bonds or salt bridges with some exceptions like an aromatic hydrogen bonds, halogen bonds or pi-cation.
 %
 %When comparing the overall positions of EOS100380 (\autoref{fig:docking_EOS100380}) and ADP (\autoref{fig:docking_ADP}) within the binding pocket the similarities are even more apparent. 
@@ -267,6 +268,7 @@ However, the consensus binding pocket is not necessarily the best binding site f
 \setcounter{table}{0}
 \renewcommand{\thetable}{S\arabic{table}}
 
+%\vspace{3cm}	
 \begin{figure}[htp]
 	\centering
 	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
@@ -277,8 +279,9 @@ However, the consensus binding pocket is not necessarily the best binding site f
 	\caption{Comparison of Vina and Glide docking results. 100 ligands were compared in \subref{subfig:comp_ranks}) ranks and \subref{subfig:comp_scores}) docking scores. Dots in blue represent the top 5 ligands from Vina and in orange the top 5 from Glide. All the other top 100 ligands are marked grey.}\label{fig:comp_glide_vina}
 \end{figure}
 
+\vspace{3cm}	
 % for appendix
-\begin{table}[htp]
+\begin{table}[h]
 	\centering
 	\caption{Glide docking scores for the top 4 ligands, ATP and ADP.}\label{tab:top_docking_scores}
 	\begin{tblr}{
@@ -294,7 +297,8 @@ However, the consensus binding pocket is not necessarily the best binding site f
 	\end{tblr}
 \end{table}
 
-\begin{table}[htp]
+
+\begin{table}[h]
 	\caption{List of top 1-5 ligands with IDs, docking scores from Glide and molecular structure.}\label{tab:top1-5}
 	\begin{tabular}{cccc}
 %		
