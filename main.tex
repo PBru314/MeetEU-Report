@@ -193,15 +193,6 @@ The resulting consensus binding pocket is located in the ATP binding pocket in b
 \subsection{Evaluation of Molecular Docking}
 The 100 top scorers from Vina were subjected to Glide. The lead compounds as per Glide are listed in \autoref{tab:top_docking_scores}. All of them had a higher docking score and therefore higher affinity to the receptor than ADP, but a lower affinity compared to ATP.\\
 In comparison, Vina and Glide results showed no correlation between their ranks (\autoref{fig:comp_glide_vina}). The Pearson correlation coefficient r of the scores is 0.13 with a p-value of 0.19 which is similar to the r value of the ranks at 0.12 with a p-value of 0.22. However, 3 of Vina's top 5 scorers (rank 1, 2 and 4) were still part of the Top 10 Glide results (rank 9, 10 and 8). 
-\begin{figure}[htp]
-	\centering
-	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
-	\subcaptionbox{%
-		\label{subfig:comp_ranks}}{\includegraphics[scale=0.5]{Comparison_of_ranks.png}}
-	\subcaptionbox{%
-		\label{subfig:comp_scores}}{\includegraphics[scale=0.5]{Comparison_of_scores.png}}
-	\caption{Comparison of Vina and Glide docking results. 100 ligands were compared in \subref{subfig:comp_ranks}) ranks and \subref{subfig:comp_scores}) docking scores. Dots in blue represent the top 5 ligands from Vina and in orange the top 5 from Glide. All the other top 100 ligands are marked grey.}\label{fig:comp_glide_vina}
-\end{figure}\\
 Analysis of intermolecular interactions between ligand and receptor binding pocket showed many bonds our Top 1 scorer from Glide has in common with ADP and ATP (LYS 288, LYS 320 and ARG 443). LYS 288 was thereby of particular interest, as it further interacts with our Top 2 and Top 3 scorer (\autoref{tab:ligand_interactions}). In most cases these bonds are either hydrogen bonds or salt bridges with some exceptions like an aromatic hydrogen bonds, halogen bonds or pi-cation.
 %
 %When comparing the overall positions of EOS100380 (\autoref{fig:docking_EOS100380}) and ADP (\autoref{fig:docking_ADP}) within the binding pocket the similarities are even more apparent. 
@@ -273,7 +264,7 @@ All in all, the analysis offers confidence, that Angiotensin 1-7 binds to the NS
 
 
 \section{Limitations of the project}
-Regarding the \acf{MD} simulation, the project was held back by the tight time schedule. Running simulations for other top scoring ligands would have helped immensely in validating out pipeline further and compare the results of the top scorer. Furthermore, running multiple runs of the same simulation, for example using replica exchange with dynamical scaling \textcite{REDS}, would have also further deepened our confidence in the results, as \ac{MD} simulations in and of themselves are a very stochastic process and should always be estimated using replicas. For the analysis of the protein-ligand complex using \textit{gmxMMPBSA} the same calculation should have been conducted on the MD run using ANP as the ligand, which was not possible due to technical difficulties.Thus, the given $\Delta G_{solv}$ of our ligand is a little difficult to interpret without a comparison value.
+Regarding the \acf{MD} simulation, the project was held back by the tight time schedule. Running simulations for other top scoring ligands would have helped immensely in validating our pipeline further and compare the results of the top scorer. Furthermore, running multiple runs of the same simulation, for example using replica exchange with dynamical scaling \cite{REDS}, would have also further deepened our confidence in the results, as \ac{MD} simulations in and of themselves are a very stochastic process and should always be estimated using replicas. For the analysis of the protein-ligand complex using \textit{gmxMMPBSA} the same calculation should have been conducted on the MD run using ANP as the ligand, which was not possible due to technical difficulties.Thus, the given $\Delta G_{solv}$ of our ligand is a little difficult to interpret without a comparison value.
 Furthermore, the original plan to implement \textit{AutoGrow4} \cite{packageAutogrow4} in order to improve our lead drugs and generate novel compounds was hindered by technical problems, which could not be fixed with the limited time at our disposal. We believe, that the increase in diversity among the drug candidates would lead to a better final drug candidate. With the help of \textit{eToxPred}, as shown in this report, the new compounds could have been evaluated for their toxicity and a well binding, not too cytotoxic lead could have been presented. 
 
 \pagebreak
@@ -281,6 +272,16 @@ Furthermore, the original plan to implement \textit{AutoGrow4} \cite{packageAuto
 
 \setcounter{figure}{0}
 \renewcommand{\thefigure}{S\arabic{figure}}
+
+\begin{figure}[htp]
+	\centering
+	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
+	\subcaptionbox{%
+		\label{subfig:comp_ranks}}{\includegraphics[scale=0.5]{Comparison_of_ranks.png}}
+	\subcaptionbox{%
+		\label{subfig:comp_scores}}{\includegraphics[scale=0.5]{Comparison_of_scores.png}}
+	\caption{Comparison of Vina and Glide docking results. 100 ligands were compared in \subref{subfig:comp_ranks}) ranks and \subref{subfig:comp_scores}) docking scores. Dots in blue represent the top 5 ligands from Vina and in orange the top 5 from Glide. All the other top 100 ligands are marked grey.}\label{fig:comp_glide_vina}
+\end{figure}\\
 
 % for appendix
 \begin{table}[htp]
@@ -312,12 +313,12 @@ Furthermore, the original plan to implement \textit{AutoGrow4} \cite{packageAuto
 		& Pi-cation       & ARG 443                                                           &  \\
 		ATP              & hydrogen bond   & {GLY 287, LYS 288, SER 289, HIE 290, \\ARG 443, GLH 375}          &  \\
 		& salt bridge    & LYS 288, LYS 320, ARG 443                                         &  \\
-		EOS100380        & hydrogen bond   & {LYS 288, LYS 320, ASP 315, GLU 319, \\GLU 341, ARG 443, GLU 540} &  \\
+		ZINC000096077632 & hydrogen bond   & {LYS 288, LYS 320, ASP 315, GLU 319, \\GLU 341, ARG 443, GLU 540} &  \\
 		& salt bridge    & {LYS 288, LYS 320, ASP 315, GLU 319,~ \\ARG 443, GLU 540}         &  \\
 		ZINC000008101127 & hydrogen bond   & ARG 178                                                           &  \\
 		& aromatic h-bond & GLY 538                                                           &  \\
 		& salt bridge    & LYS 288                                                           &  \\
-		EOS100897        & hydrogen bond   & ASP 534                                                           &  \\
+		ZINC000035880991  & hydrogen bond   & ASP 534                                                           &  \\
 		& halogen bond    & ASN 516, THR 532                                                  &  \\
 		& Pi-cation       & LYS 288                                                           &  
 	\end{tblr}
