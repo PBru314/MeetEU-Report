@@ -196,11 +196,14 @@ The first step of our drug discovery pipeline, is the detection of the consensus
 Overall, the hot spots calculated with \textit{Fpocket} overlapping between the three crystal structures all ranked first among the calculated binding sites for each crystal structure. Their \acp{DScore} were 0.647 for 6ZSL, 0.383 for 5RM2, and 0.875 for 5RME. Also, the respective overlapping binding sites calculated with \textit{PrankWeb} ranked either first (5RM2 and 5RME) or second (6ZSL) among the calculated binding sites. Therefore, the respective \textit{Scores} and calculated \textit{Probability} was also among the highest for these binding sites (Score of 9.69 and Probability of 0.562 for 6ZSL, Score of 22.15 and Probability of 0.860 for 5RM2, and a Score of 17.91 and a Probability of 0809 for 5RME). Additionally, four hot spots were detected for 6ZSL and 5RME which contained some amino acids in common with the just mentioned binding site. These were also merged into the consensus binding pocket. However, they were ranked lower by \textit{PrankWeb} and also contained additional amino acids not present in the highest ranked binding sites. 
 Interestingly, for the crystal structure 5RME a second binding hot spot was detected in proximity to the 1B domain. Nevertheless, because this binding site was only found in one crystal structure and the underlying pockets were ranked very low by both \textit{Fpocket} and \textit{PrankWeb}, this binding site was not considered for further analysis.
 The resulting consensus binding pocket is located in the ATP binding pocket in between the two RecA-like domains A1 and A2 (Figure \ref{consensus_binding_pocket}). 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.3\textwidth]{consens_domain_big.pdf}
-    \caption{Consensus binding pocket of the NSP13 helicase. The binding pocket is located in the ATP binding pocket in between the two RecA-like domains A1 and A2.}
-    \label{consensus_binding_pocket}
+\begin{figure}[htp]
+	\centering
+	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont=bf,labelformat=parens,singlelinecheck=false}
+	\subcaptionbox{%
+		\label{subfig:domains}}{\includegraphics[width=0.3\textwidth]{consens_domain_big.pdf}}
+	\subcaptionbox{%
+		\label{subfig:pocket}}{\includegraphics[width=0.5\textwidth]{pocket_w_labels.pdf}}
+	\caption{\textbf{Consensus binding pocket of the NSP13 helicase.} In (\subref{subfig:pocket}) you can see the consensus binding pocket (orange) detected with \textit{Fpocket}, \textit{PrankWeb}, and \textit{FTMap}. The binding pocket is located in the ATP binding pocket in between the two RecA-like domains A1 and A2. In (\subref{subfig:domains}) the important amino acid residues of the consensus binding site are showcased. In green, you can see the residues that are part that are part of the consensus binding pocket. In blue, you can see the residues that are part of the consensus binding pocket and are also found by \textcite{Berta_2021} as part of the ATP binding site. The amino acid residues only found by \textcite{Berta_2021} are depicted in pink. Additionally, amino residues that interact with our top three scoring ligands which were identified with \textit{Glide} are coloured blue. The amino acid residues that are forming H-bonds with our top scoring ligand are labelled.}\label{consensus_binding_pocket}
 \end{figure}
 \FloatBarrier
 %figure wird noch kleiner, wenn bild von pocket hinzugefügt wird
@@ -235,12 +238,12 @@ After identifying the top 100 best-binding ligands through \textit{AutoDock Vina
 Comparison of the results from the docking simulations of the three paired teams ("Warsaw1", "Sorbonne5", and "Heidelberg") was performed by clustering the top 30 scoring compounds of the teams based on their structural similarity (Figure \ref{hc_properties} (A)). Here, we can see that the three compounds on ranks 4,5, and 6 from "Sorbonne5" are most dissimilar to each other. Overall the compounds cannot clearly be divided into clusters. This is also reflected in the heatmap that was created based on the physico-chemical properties of the compounds (Figure \ref{hc_properties} (B)). Nevertheless, 22 out of the 30 investigated compounds fulfill Lipinski's Rule of Five. Interestingly, all of the compounds that did not fulfill Lipinski's rule share the property that they contain more than 10 \ac{HBA}. Of these compounds, five were detected by team Heidelberg, including our top scoring ligand. The other three compounds came from "Sorbonne5" and none came from "Warsaw1". These eight compounds that were not drug-like were removed in the following steps.
 The resulting heatmap of the 22 compounds that fulfill Lipinski's rule and their physico-chemical properties are shown in Figure \ref{hc_properties} (B).  
 
-\begin{figure}
-    \centering
-    \includegraphics[width=0.6\textwidth]{heatmap.pdf}
-    \caption{\textbf{Comparison of the (A) structural and (B) physico-chemical properties of the top scoring compounds from Sorbonne5 (H), Warsaw1 (W), and Heidelberg (H).} The first heatmap(A) is based on the distances of the compounds calculated using the Tanimoto coefficient. In (B) the physic-chemical properties were determined using Open Babel descriptors (\acl{HBD}, \acl{HBA}, \acl{MW}, \acl{logP}). Here, only compounds fulfilling Lipinski's rule of five are shown.}
-    \label{hc_properties} 
-\end{figure}
+%\begin{figure}
+%    \centering
+%    \includegraphics[width=0.6\textwidth]{heatmap.pdf}
+%    \caption{\textbf{Comparison of the (A) structural and (B) physico-chemical properties of the top scoring compounds from Sorbonne5 (H), Warsaw1 (W), and Heidelberg (H).} The first heatmap(A) is based on the distances of the compounds calculated using the Tanimoto coefficient. In (B) the physic-chemical properties were determined using Open Babel descriptors (\acl{HBD}, \acl{HBA}, \acl{MW}, \acl{logP}). Here, only compounds fulfilling Lipinski's rule of five are shown.}
+%    \label{hc_properties} 
+%\end{figure}
 
 \subsection{Molecular Dynamics Simulation Validates Binding of Top Scorer}
 The \ac{MD} simulation is integral to validate the results of our pipeline. After the production run was finished, the resulting trajectory file was centred on the protein and modified to remove any ghosting and splitting of the protein at the borders of the simulation box. The last frame of the simulation was extracted and visualized using \textit{pyMOL} \cite{PyMOL}, which can be seen in Figure \ref{MD.Annotated}.
@@ -422,6 +425,15 @@ However, the consensus binding pocket is not necessarily the best binding site f
 	\caption{Percentage of ligand conformation within our binding site in relation to the selection made by Diffdock}\label{Diffdock_plot}
 \end{figure}
 
+\begin{figure}[htp]
+	\centering
+	\captionsetup[subfigure]{skip=-15pt,position=top,labelfont={bf},format=plain,textfont=rm, labelformat=parens, singlelinecheck=false,size=large}
+	\subcaptionbox{%
+		\label{subfig:lipinsky_heatmap}}{\includegraphics[width=0.7\textwidth]{all2_tops_hc.pdf}}
+	\subcaptionbox{%
+		\label{subfig:all_tops_hc}}{\includegraphics[width=0.9\textwidth]{Lipinsky_heatmap.pdf}}
+	\caption{\textbf{Comparison of the (a) structural and (b) physico-chemical properties of the top scoring compounds from Sorbonne5 (H), Warsaw1 (W), and Heidelberg (H).} The first heatmap (a) is based on the distances of the compounds calculated using the Tanimoto coefficient. In (b) the physic-chemical properties were determined using Open Babel descriptors (\acl{HBD}, \acl{HBA}, \acl{MW}, \acl{logP}). Here, only compounds fulfilling Lipinski's rule of five are shown.}\label{hc_properties}
+\end{figure}
 
 \begin{figure}[h]
   \begin{center}
