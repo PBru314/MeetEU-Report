@@ -23,6 +23,9 @@
 \usepackage{amsmath}
 \usepackage[headsepline]{scrlayer-scrpage}
 \usepackage{acronym}
+%needed for Diffdock images
+\usepackage{subcaption}
+\usepackage[labelformat=parens,labelsep=quad,skip=3pt]{caption}
 
 \clearpairofpagestyles %Seitenzahl nicht in der Kopfzeile
 
@@ -159,7 +162,7 @@ A second molecular docking was performed with those top scorers from the screeni
 \subsection{Estimation of Toxicity and Synthetic Accessibility}
 The general toxicity and synthetic accessibility of the given compounds was estimated using the machine-learning tool \textit{eToxPred} \cite{pu2019toxpred}. The SMILES files of the Top100 compounds from \textit{AutoDock Vina} \cite{Trott.2010} served as input for the pre-trained model.The toxicity predictor was pre-trained on the FDA-approved and the KEGG-drug datasets whose compounds were considered non-toxic as well as the TOXNET and the T3DB datasets whose compounds were considered toxic using a deep-belief-network based model. This predictor yields a Tox-score between 0 and 1 and in accordance to the paper, all compounds with a Tox-score below 0.58 were deemed non-toxic. The synthetic accessibility was reflected in a \ac{SAscore} which was obtained by training an extra-trees-based classifier on NuBBE, UNPD, FDA-approved, and DUD-E-active datasets.
  
-\subsection{Validation of the binding-site for the Top100 scorer}
+\subsection{Validation of the binding-site for the Top 100 scorer}
 The likelihood of our Top100 scorer binding within our consensus pocket was validated by blind docking via \textit{Diffdock} \cite{Corso.2022}. Thereby, all required sdf files were transformed into SMILES using \textit{OpenBabel} (Version 3.1.1, \textcite{OpenBabel}). As receptor, the prepared 6ZSL PDB files were utilised. \textit{Diffdock} was performed using the pretrained scoring model\footnote{https://github.com/gcorso/DiffDock/tree/bc6b5151457ea5304ee69779d92de0fded599a2c/workdir/paper\_score\_model} to infer ligand conformations and ranking based on the included confidence model\footnote{https://github.com/gcorso/DiffDock/tree/bc6b5151457ea5304ee69779d92de0fded599a2c/workdir/paper\_confidence\_model}. The proposed default settings were used for the inference. These contained 20 inference steps, the generation of 40 samples per ligand, a batch-size of 10 and 18 actual denoising steps, whereby no noise was used for the final step of the reverse diffusion process. For the analysis of the \textit{Diffdock} output, the maximum and minimum coordinates for all samples generated per ligand were extracted using \textit{PyMOL} (Version 2.5.5, \textcite{PyMOL}) and aligned with the coordinates of our consensus pocket in Python (Version 3.10, \textcite{Python}). Based on that, the mean number of ligands within our binding site was calculated and set into relation to the rank posed on the ligand samples by the \textit{Diffdock} confidence score.
 
 \subsection{Molecular Dynamics Simulation}
@@ -169,6 +172,24 @@ Following the tutorial, the simulation space was set up, filled with water (a99S
 For the analysis of the simulation, \textit{GROMACS} internal tools were used to calculate the RMSD and RMSF of the protein. These scores give us insight into the movement and conformational changes during the simulation regarding protein and ligand. Furthermore, the simulation frames were extracted and rendered into a video using \textit{VMD} \cite{VMD}. For MM-PBSA calculations we used \textit{gmx\_MMPBSA} \cite{MMPBSA1}. This package enables direct estimation of binding affinities using the \textit{GROMACS} output files.
 
 \section{Results}
+\subsection{Validation of binding-site for the Top10 scorer of Glide}
+As shown in \autoref{pymol_Top3}, Diffdock did not validate our binding site for our Top 1 and Top 2 glide results. All predicted conformations weren't found within our designated binding site. For our Top 3 Glide on the other hand, at least two the 10\% predictions Diffdock is most confident in, seem to have interaction with our binding site. As shown in \autoref{Diffdock_plot} Diffdocks confidence into conformations of our Glide Top 3 ligand seems to correlate with their position within our binding pocket, which supports the assumption that this ligand does have its preferred binding site within our pocket. Among our Top 10 Glide ligands, better results according to diffdock were only achieved for our Top 5.
+\begin{figure}[h]
+	\centering
+	\begin{subfigure}{5cm}
+		\centering\includegraphics[width=7cm]{Top1_Glide_Rank5}
+		\caption{Glide Top-1}
+	\end{subfigure}
+	\begin{subfigure}{5cm}
+		\centering\includegraphics[width=7cm]{Top2_Glide_Rank5}
+		\caption{Glide Top-2}
+	\end{subfigure}
+	\begin{subfigure}{5cm}
+		\centering\includegraphics[width=7cm]{Top3_Glide_Rank5}
+		\caption{Glide Top-3}
+	\end{subfigure}
+	\caption{Diffdock results for our Top 3 Glide ligands. Shown are always the 5 ligand conformations Diffdock was most confident in. (a) Glide Top-1 (b) Glide Top-2 and (c) Glide Top-3.}\label{pymol_Top3}
+\end{figure}
 
 \subsection{Top 100 Compounds Exhibit Low Toxicity and High Synthetic Accessibility}
 After identifying the top 100 best-binding ligands through AutoDock Vina, our subsequent analysis focused on evaluating their practical applicability as potential drugs by considering their predicted toxicity and synthetic accessibility. The resulting SAscore and Tox-Score for each compound were visualised in a scatter plot as seen in {Figure \ref{eToxPred}}. 
@@ -238,6 +259,12 @@ Furthermore, the original plan to implement \textit{AutoGrow4} \cite{packageAuto
   \caption{RMSD and RMSF of Protein backbone for the simulation with ANP}\label{anp}
 \end{figure}
 
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=7cm]{diffdock_percentage_graph}
+  \end{center}
+  \caption{Percentage of ligand conformation within our binding site in relation to the selection made by Diffdock}\label{Diffdock_plot}
+\end{figure}
 
 
 \pagebreak
