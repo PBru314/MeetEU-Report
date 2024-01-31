@@ -68,6 +68,10 @@ Molecular Docking was performed using the FDA approved ligands from ZINC and the
 
 In comparison, Sorbonne team 5 used a pre selection of the ECBD pilot library and subjected these to Vina. For their first ranked ligand our results predict an affinity score of -11.1 and was ranked 63 in our Vina results. The remaining 7 were mapped to lower with ranks between 123 and 2626. These results however aren't surprising, as Sorbonne 5 used a different binding pocket, compared to us.\\
 
+\subsection{Limitations of the project}
+Regarding molecular dynamics (MD) simulation, the project was held back by the tight time schedule. Further simulations should have been performed in order to validate our pipeline and compare our top scorer. Moreover, since MD simulations are a very stochastic process, they should always be estimated using replicas. Multiple runs of the same simulation, using replica exchange with dynamical scaling \cite{REDS} could have therefore deepened our confidence in the results.\\
+\\
+Of further interest could have been the implementation of \textit{AutoGrow4} \cite{packageAutogrow4}. This could have helped, alongside toxicity and synthetic accessibility predictions via\textit{eToxPred} to improve our lead drugs and to generate novel compounds.
 
 \pagebreak
 \FloatBarrier
